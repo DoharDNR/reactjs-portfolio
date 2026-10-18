@@ -29,7 +29,7 @@ export default function AboutSection() {
         <div className="max-w-360 mx-auto px-6 md:px-12.5 min-h-[285px] grid grid-cols-1 md:grid-cols-[2fr_1fr_auto] lg:grid-cols-[2fr_1fr_auto] gap-4 items-center">
           {/* Introductory text (left) */}
           <div className="flex flex-col items-start max-w-[520px]">
-            <span className="inline-flex items-center gap-2 px-4 py-[3px] rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium mb-6 align-start">
+            <span className="inline-flex items-center gap-2 px-4 py-[3px] rounded-full bg-blue-900/20 text-blue-400 text-sm font-medium mb-6 align-start">
               About Me
             </span>
             <h1 className="font-display text-neutral-12 text-[28px] sm:text-[36px] md:text-[42px] lg:text-5xl font-800 leading-tight">
@@ -42,7 +42,7 @@ export default function AboutSection() {
           </div>
 
           {/* Portrait (center) */}
-          <div className="flex justify-end">
+          <div className="flex justify-center">
             <img
               src={Profil}
               alt={`Portrait of ${IDENTITY.name}`}
@@ -51,7 +51,7 @@ export default function AboutSection() {
           </div>
 
           {/* Profile facts (right) */}
-          <div className="flex flex-col gap-[22px] ml-auto md:ml-0 lg:ml-0">
+          <div className="flex flex-col gap-[22px] items-start ml-[80px] md:ml-auto md:items-start lg:ml-0 lg:items-start">
             <InfoItem icon={<UserIcon />} label="Name" value={IDENTITY.name} />
             <InfoItem icon={<MapPin />} label="Location" value={IDENTITY.location} />
             <InfoItem icon={<Mail />} label="Email" value={IDENTITY.email} />
