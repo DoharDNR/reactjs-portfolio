@@ -239,6 +239,42 @@ function Toaster() {
     /* @__PURE__ */ jsx(ToastViewport, {})
   ] });
 }
+function Footer() {
+  return /* @__PURE__ */ jsx("footer", { className: "border-t border-gray-200 px-4 py-4 dark:border-gray-800 sm:px-6", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto flex max-w-7xl items-center justify-between gap-4", children: [
+    /* @__PURE__ */ jsx("p", { className: "text-sm text-gray-500 dark:text-gray-400", children: "© 2026 Dohar Siregar. All rights reserved." }),
+    /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-end gap-1", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsx("span", { className: "text-xs text-gray-400 line-through", children: "v1.0.0" }),
+        /* @__PURE__ */ jsx("span", { className: "text-sm font-medium text-gray-700 dark:text-gray-200", children: "v1.0.1" })
+      ] }),
+      /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400", children: [
+        /* @__PURE__ */ jsxs(
+          "svg",
+          {
+            "aria-hidden": "true",
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "12",
+            height: "12",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            className: "animate-spin",
+            children: [
+              /* @__PURE__ */ jsx("path", { d: "M20 7v5h-5" }),
+              /* @__PURE__ */ jsx("path", { d: "M4 17v-5h5" }),
+              /* @__PURE__ */ jsx("path", { d: "M5.6 9a7 7 0 0 1 11.5-2L20 12" }),
+              /* @__PURE__ */ jsx("path", { d: "M4 12l2.9 5a7 7 0 0 0 11.5-2" })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsx("span", { children: "Upgrading" })
+      ] })
+    ] })
+  ] }) });
+}
 const colorSchemeApi = "data:text/javascript;base64,ZnVuY3Rpb24gaW5pdGlhdGVDb2xvclNjaGVtZSh7IHNhdmVDb25maWcsIGxvYWRDb25maWcsIGNzc0NsYXNzIH0pIHsKICAgIGNvbnN0IHN0YXRlID0gewogICAgICAgIGxpc3RlbmVyczogbmV3IFNldCgpLAogICAgICAgIGNvbmZpZzogbG9hZENvbmZpZygpLAogICAgfTsKICAgIGNvbnN0IGlzRGFya1F1ZXJ5ID0gd2luZG93Lm1hdGNoTWVkaWEoJyhwcmVmZXJzLWNvbG9yLXNjaGVtZTogZGFyayknKTsKICAgIGNvbnN0IHJlc29sdmVTeXN0ZW0gPSAoKSA9PiAoaXNEYXJrUXVlcnkubWF0Y2hlcyA/ICdkYXJrJyA6ICdsaWdodCcpOwogICAgY29uc3Qgb25TeXN0ZW1DaGFuZ2UgPSAoKSA9PiB7CiAgICAgICAgaWYgKHN0YXRlLmNvbmZpZyAhPT0gJ3N5c3RlbScpCiAgICAgICAgICAgIHJldHVybjsKICAgICAgICB1cGRhdGVEb2N1bWVudCgpOwogICAgfTsKICAgIGNvbnN0IGN1cnJlbnRTdGF0ZSA9ICgpID0+IHsKICAgICAgICBjb25zdCBjb25maWcgPSBzdGF0ZS5jb25maWc7CiAgICAgICAgY29uc3QgcmVzb2x2ZWQgPSBjb25maWcgPT09ICdzeXN0ZW0nID8gcmVzb2x2ZVN5c3RlbSgpIDogY29uZmlnOwogICAgICAgIHJldHVybiB7IGNvbmZpZywgcmVzb2x2ZWQgfTsKICAgIH07CiAgICBjb25zdCB1cGRhdGVEb2N1bWVudCA9ICgpID0+IHsKICAgICAgICBjb25zdCBjdXJyZW50ID0gY3VycmVudFN0YXRlKCk7CiAgICAgICAgY29uc3Qgcm9vdCA9IGRvY3VtZW50LmRvY3VtZW50RWxlbWVudDsKICAgICAgICByb290LmNsYXNzTGlzdC5yZW1vdmUoY3NzQ2xhc3MubGlnaHQsIGNzc0NsYXNzLmRhcmspOwogICAgICAgIHJvb3QuY2xhc3NMaXN0LmFkZChjc3NDbGFzc1tjdXJyZW50LnJlc29sdmVkXSk7CiAgICAgICAgcm9vdC5zdHlsZS5jb2xvclNjaGVtZSA9IGN1cnJlbnQucmVzb2x2ZWQgPT09ICdkYXJrJyA/ICdkYXJrJyA6ICdsaWdodCc7CiAgICAgICAgc3RhdGUubGlzdGVuZXJzLmZvckVhY2goKGxpc3RlbmVyKSA9PiBsaXN0ZW5lcihjdXJyZW50KSk7CiAgICB9OwogICAgLy8gc2V0IGluaXRpYWwgY29sb3Igc2NoZW1lIGFuZCBsaXN0ZW4gZm9yIHN5c3RlbSBjaGFuZ2VzCiAgICB1cGRhdGVEb2N1bWVudCgpOwogICAgaXNEYXJrUXVlcnkuYWRkRXZlbnRMaXN0ZW5lcignY2hhbmdlJywgb25TeXN0ZW1DaGFuZ2UpOwogICAgcmV0dXJuIHsKICAgICAgICBnZXQgY29uZmlnKCkgewogICAgICAgICAgICByZXR1cm4gc3RhdGUuY29uZmlnOwogICAgICAgIH0sCiAgICAgICAgc2V0IGNvbmZpZyhjb25maWcpIHsKICAgICAgICAgICAgaWYgKGNvbmZpZyA9PT0gc3RhdGUuY29uZmlnKQogICAgICAgICAgICAgICAgcmV0dXJuOwogICAgICAgICAgICBzdGF0ZS5jb25maWcgPSBjb25maWc7CiAgICAgICAgICAgIHVwZGF0ZURvY3VtZW50KCk7CiAgICAgICAgICAgIHNhdmVDb25maWcoY29uZmlnKTsKICAgICAgICB9LAogICAgICAgIGdldCBjdXJyZW50U3RhdGUoKSB7CiAgICAgICAgICAgIHJldHVybiBjdXJyZW50U3RhdGUoKTsKICAgICAgICB9LAogICAgICAgIGdldCByZXNvbHZlZFN5c3RlbSgpIHsKICAgICAgICAgICAgcmV0dXJuIHJlc29sdmVTeXN0ZW0oKTsKICAgICAgICB9LAogICAgICAgIGdldFJvb3RDc3NDbGFzcyhyZXNvbHZlZCA9IGN1cnJlbnRTdGF0ZSgpLnJlc29sdmVkKSB7CiAgICAgICAgICAgIHJldHVybiBjc3NDbGFzc1tyZXNvbHZlZF07CiAgICAgICAgfSwKICAgICAgICBzdWJzY3JpYmU6IChzdWIpID0+IHsKICAgICAgICAgICAgc3RhdGUubGlzdGVuZXJzLmFkZChzdWIpOwogICAgICAgICAgICByZXR1cm4gKCkgPT4gewogICAgICAgICAgICAgICAgc3RhdGUubGlzdGVuZXJzLmRlbGV0ZShzdWIpOwogICAgICAgICAgICB9OwogICAgICAgIH0sCiAgICAgICAgZGlzcG9zZTogKCkgPT4gewogICAgICAgICAgICBzdGF0ZS5saXN0ZW5lcnMuY2xlYXIoKTsKICAgICAgICAgICAgaXNEYXJrUXVlcnkucmVtb3ZlRXZlbnRMaXN0ZW5lcignY2hhbmdlJywgb25TeXN0ZW1DaGFuZ2UpOwogICAgICAgIH0sCiAgICB9Owp9CmNvbnN0IHN0b3JhZ2VLZXkgPSAnY29sb3Itc2NoZW1lJzsKY29uc3Qgc2NyaXB0RGF0YXNldCA9IGRvY3VtZW50LmN1cnJlbnRTY3JpcHQ/LmRhdGFzZXQ7CmNvbnN0IGRhcmtDc3NDbGFzcyA9IHNjcmlwdERhdGFzZXQ/LmRhcmtDbGFzcyB8fCAnZGFyay10aGVtZSc7CmNvbnN0IGxpZ2h0Q3NzQ2xhc3MgPSBzY3JpcHREYXRhc2V0Py5saWdodENsYXNzIHx8ICdsaWdodC10aGVtZSc7CndpbmRvdy5jb2xvclNjaGVtZUFwaSA/Pz0gaW5pdGlhdGVDb2xvclNjaGVtZSh7CiAgICBsb2FkQ29uZmlnKCkgewogICAgICAgIHRyeSB7CiAgICAgICAgICAgIGNvbnN0IGNvbmZpZyA9IGxvY2FsU3RvcmFnZS5nZXRJdGVtKHN0b3JhZ2VLZXkpOwogICAgICAgICAgICByZXR1cm4gY29uZmlnID09PSAnbGlnaHQnIHx8IGNvbmZpZyA9PT0gJ2RhcmsnID8gY29uZmlnIDogJ3N5c3RlbSc7CiAgICAgICAgfQogICAgICAgIGNhdGNoIHsKICAgICAgICAgICAgcmV0dXJuICdzeXN0ZW0nOwogICAgICAgIH0KICAgIH0sCiAgICBzYXZlQ29uZmlnKGNvbmZpZykgewogICAgICAgIHRyeSB7CiAgICAgICAgICAgIGlmIChjb25maWcgPT09ICdzeXN0ZW0nKSB7CiAgICAgICAgICAgICAgICBsb2NhbFN0b3JhZ2UucmVtb3ZlSXRlbShzdG9yYWdlS2V5KTsKICAgICAgICAgICAgfQogICAgICAgICAgICBlbHNlIHsKICAgICAgICAgICAgICAgIGxvY2FsU3RvcmFnZS5zZXRJdGVtKHN0b3JhZ2VLZXksIGNvbmZpZyk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgY2F0Y2ggewogICAgICAgICAgICAvLyBGYWxsYmFjayB0byBuby1vcCBpZiBsb2NhbFN0b3JhZ2UgaXMgbm90IGF2YWlsYWJsZQogICAgICAgIH0KICAgIH0sCiAgICBjc3NDbGFzczogeyBsaWdodDogbGlnaHRDc3NDbGFzcywgZGFyazogZGFya0Nzc0NsYXNzIH0sCn0pOwo=";
 const favicon = "/favicon.svg";
 const links = () => [{
@@ -280,7 +316,7 @@ function Layout({
         src: colorSchemeApi
       }), /* @__PURE__ */ jsx(Links, {})]
     }), /* @__PURE__ */ jsxs("body", {
-      children: [children, /* @__PURE__ */ jsx(Toaster, {}), /* @__PURE__ */ jsx(ScrollRestoration, {}), /* @__PURE__ */ jsx(Scripts, {})]
+      children: [children, /* @__PURE__ */ jsx(Toaster, {}), /* @__PURE__ */ jsx(Footer, {}), /* @__PURE__ */ jsx(ScrollRestoration, {}), /* @__PURE__ */ jsx(Scripts, {})]
     })]
   });
 }
@@ -658,7 +694,7 @@ function AboutSection() {
           className: "w-[150px] h-[150px] sm:w-[170px] sm:h-[170px] md:w-[192px] md:h-[192px] rounded-full object-cover object-center"
         }
       ) }),
-      /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-[22px] items-start ml-[10px] md:ml-auto md:items-start lg:ml-0 lg:items-start", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-[22px] items-start ml-[80px] md:ml-auto md:items-start lg:ml-0 lg:items-start", children: [
         /* @__PURE__ */ jsx(InfoItem, { icon: /* @__PURE__ */ jsx(UserIcon, {}), label: "Name", value: IDENTITY.name }),
         /* @__PURE__ */ jsx(InfoItem, { icon: /* @__PURE__ */ jsx(MapPin, {}), label: "Location", value: IDENTITY.location }),
         /* @__PURE__ */ jsx(InfoItem, { icon: /* @__PURE__ */ jsx(Mail, {}), label: "Email", value: IDENTITY.email }),
@@ -1194,7 +1230,7 @@ const route3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: projects_$slug,
   meta
 }, Symbol.toStringTag, { value: "Module" }));
-const serverManifest = { "entry": { "module": "/assets/entry.client-oPfFzfRg.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-DwfqwpLD.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/root-CviybdH2.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-Cvcj2MF2.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/react-DWWJBjY7.js", "/assets/button-Bj1ynG_y.js", "/assets/index-KDJvqPid.js", "/assets/index-zZwiYWio.js"], "css": ["/assets/home-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects-BzFe4D6G.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/projects-DEAj6KPk.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-DtNu1PJl.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/button-Bj1ynG_y.js", "/assets/projects-DEAj6KPk.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-51eb684d.js", "version": "51eb684d", "sri": void 0 };
+const serverManifest = { "entry": { "module": "/assets/entry.client-oPfFzfRg.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-C0g9ZSQW.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/root-DyH74y0x.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-BuPKhqy2.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/react-DWWJBjY7.js", "/assets/button-Bj1ynG_y.js", "/assets/index-KDJvqPid.js", "/assets/index-zZwiYWio.js"], "css": ["/assets/home-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects-BzFe4D6G.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/projects-DEAj6KPk.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-DtNu1PJl.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/button-Bj1ynG_y.js", "/assets/projects-DEAj6KPk.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-40c2f671.js", "version": "40c2f671", "sri": void 0 };
 const assetsBuildDirectory = "build/client";
 const basename = "/";
 const future = { "unstable_optimizeDeps": true, "unstable_subResourceIntegrity": false, "unstable_trailingSlashAwareDataRequests": false, "v8_middleware": false, "v8_splitRouteModules": false, "v8_viteEnvironmentApi": false };

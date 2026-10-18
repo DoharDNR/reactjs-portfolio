@@ -2,6 +2,7 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration }
 
 import type { Route } from "./+types/root";
 import { Toaster } from "./components/ui/toaster/toaster";
+import { Footer } from "./components/ui/footer/footer";
 import colorSchemeApi from "@dazl/color-scheme/client?url";
 
 import "./styles/tailwind.css";
@@ -47,6 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <Toaster />
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
