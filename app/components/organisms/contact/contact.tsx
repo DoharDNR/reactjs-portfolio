@@ -13,7 +13,7 @@ export function ContactSection() {
         </p>
       </header>
 
-      <nav className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <nav className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <ContactLink
           icon={<Mail className="w-6 h-6" />}
           text="doharsiregar10@gmail.com"
