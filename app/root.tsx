@@ -4,8 +4,7 @@ import type { Route } from "./+types/root";
 import { Toaster } from "./components/ui/toaster/toaster";
 import colorSchemeApi from "@dazl/color-scheme/client?url";
 
-import "./styles/reset.css";
-import "./styles/global.css";
+import "./styles/tailwind.css";
 import "./styles/tokens/keyframes.css";
 import "./styles/tokens/animations.css";
 import "./styles/tokens/colors.css";

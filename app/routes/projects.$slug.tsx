@@ -30,7 +30,7 @@ export default function ProjectDetail() {
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.headerContent}>
-            <Link to="/#projects" className={styles.backLink}>
+            <Link to="/projects" className={styles.backLink}>
               <ArrowLeft className={styles.backIcon} />
               Back to Projects
             </Link>
@@ -47,7 +47,7 @@ export default function ProjectDetail() {
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <Link to="/#projects" className={styles.backLink}>
+          <Link to="/projects" className={styles.backLink}>
             <ArrowLeft className={styles.backIcon} />
             Back to Projects
           </Link>
@@ -130,7 +130,7 @@ export default function ProjectDetail() {
         {/* Navigation */}
         <nav className={styles.navigation}>
           <Button asChild size="lg">
-            <Link to="/#projects">
+            <Link to="/projects">
               <ArrowLeft className={styles.backIcon} />
               View All Projects
             </Link>

@@ -41,18 +41,18 @@
   --slate-12: light-dark(#1c2024, #edeef0);
   --slate-contrast: #fff;
 
-  --sage-1: light-dark(#fbfdfc, #101211);
-  --sage-2: light-dark(#f7f9f8, #171918);
-  --sage-3: light-dark(#eef1f0, #202221);
-  --sage-4: light-dark(#e6e9e8, #272a28);
-  --sage-5: light-dark(#dfe2e0, #2e3130);
-  --sage-6: light-dark(#d7dad8, #373b39);
-  --sage-7: light-dark(#cbcfcd, #444947);
-  --sage-8: light-dark(#b8bcbb, #5b625f);
-  --sage-9: light-dark(#868e8b, #63706b);
-  --sage-10: light-dark(#7c8481, #717d79);
-  --sage-11: light-dark(#5f6563, #adb5b2);
-  --sage-12: light-dark(#1a211e, #eceeed);
+  --sage-1: light-dark(#ffffff, #101211);
+  --sage-2: light-dark(#fafafa, #171918);
+  --sage-3: light-dark(#f5f5f5, #202221);
+  --sage-4: light-dark(#eeeeee, #272a28);
+  --sage-5: light-dark(#e8e8e8, #2e3130);
+  --sage-6: light-dark(#e0e0e0, #373b39);
+  --sage-7: light-dark(#cccccc, #444947);
+  --sage-8: light-dark(#bdbdbd, #5b625f);
+  --sage-9: light-dark(#888888, #63706b);
+  --sage-10: light-dark(#757575, #717d79);
+  --sage-11: light-dark(#616161, #adb5b2);
+  --sage-12: light-dark(#121212, #eceeed);
   --sage-contrast: #fff;
 
   --olive-1: light-dark(#fcfdfc, #111210);
@@ -209,18 +209,18 @@
   --iris-12: light-dark(#272962, #e0dffe);
   --iris-contrast: #fff;
 
-  --indigo-1: light-dark(#fdfdfe, #11131f);
-  --indigo-2: light-dark(#f7f9ff, #141726);
-  --indigo-3: light-dark(#edf2fe, #182449);
-  --indigo-4: light-dark(#e0e9ff, #1d2e61);
-  --indigo-5: light-dark(#d2deff, #253974);
-  --indigo-6: light-dark(#c1d0ff, #304384);
-  --indigo-7: light-dark(#abbdf9, #3a4f97);
-  --indigo-8: light-dark(#8da4ef, #435db2);
-  --indigo-9: light-dark(#3e63dd, #3e63dd);
-  --indigo-10: light-dark(#3358d4, #5472e4);
-  --indigo-11: light-dark(#3a5bc7, #9db1ff);
-  --indigo-12: light-dark(#1f2d5c, #d6e1ff);
+  --indigo-1: light-dark(#ffffff, #11131f);
+  --indigo-2: light-dark(#fafbff, #141726);
+  --indigo-3: light-dark(#eef6ff, #182449);
+  --indigo-4: light-dark(#ddeaff, #1d2e61);
+  --indigo-5: light-dark(#c9d6ff, #253974);
+  --indigo-6: light-dark(#b3c2ff, #304384);
+  --indigo-7: light-dark(#9db0ff, #3a4f97);
+  --indigo-8: light-dark(#7d8dff, #435db2);
+  --indigo-9: light-dark(#3b57d6, #3e63dd);
+  --indigo-10: light-dark(#324fc1, #5472e4);
+  --indigo-11: light-dark(#3a52ad, #9db1ff);
+  --indigo-12: light-dark(#1a2456, #d6e1ff);
   --indigo-contrast: #fff;
 
   --blue-1: light-dark(#fbfdff, #0d1520);

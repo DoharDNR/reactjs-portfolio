@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme {
+  /* ===== Spacing (from tokens/spacings.css) ===== */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 32px;
+  --spacing-7: 40px;
+  --spacing-8: 48px;
+  --spacing-9: 64px;
+
+  /* ===== Border Radius ===== */
+  --radius-1: 2px;
+  --radius-2: 3px;
+  --radius-3: 4px;
+  --radius-4: 6px;
+  --radius-5: 8px;
+  --radius-6: 12px;
+  --radius-round: 1e5px;
+
+  /* ===== Colors ===== */
+  /* Neutral (sage) — light-dark() resolves at runtime via @dazl/color-scheme */
+  /* Light mode backgrounds: fully light (pure white to clean grayscale) */
+
+  /* Page background: light in light mode, dark in dark mode */
+  --color-page: light-dark(#ffffff, #121212);
+
+  --color-neutral-1: light-dark(#ffffff, #101211);
+  --color-neutral-2: light-dark(#fafafa, #171918);
+  --color-neutral-3: light-dark(#f5f5f5, #202221);
+  --color-neutral-4: light-dark(#eeeeee, #272a28);
+  --color-neutral-5: light-dark(#e8e8e8, #2e3130);
+  --color-neutral-6: light-dark(#e0e0e0, #373b39);
+  --color-neutral-7: light-dark(#cccccc, #444947);
+  --color-neutral-8: light-dark(#bdbdbd, #5b625f);
+  --color-neutral-9: light-dark(#888888, #63706b);
+  --color-neutral-10: light-dark(#757575, #717d79);
+  --color-neutral-11: light-dark(#616161, #adb5b2);
+  --color-neutral-12: light-dark(#121212, #eceeed);
+
+  /* Accent (indigo) — light mode backgrounds: fully light */
+  --color-accent-1: light-dark(#ffffff, #11131f);
+  --color-accent-2: light-dark(#fafbff, #141726);
+  --color-accent-3: light-dark(#eef6ff, #182449);
+  --color-accent-4: light-dark(#ddeaff, #1d2e61);
+  --color-accent-5: light-dark(#c9d6ff, #253974);
+  --color-accent-6: light-dark(#b3c2ff, #304384);
+  --color-accent-7: light-dark(#9db0ff, #3a4f97);
+  --color-accent-8: light-dark(#7d8dff, #435db2);
+  --color-accent-9: light-dark(#3b57d6, #3e63dd);
+  --color-accent-10: light-dark(#324fc1, #5472e4);
+  --color-accent-11: light-dark(#3a52ad, #9db1ff);
+  --color-accent-12: light-dark(#1a2456, #d6e1ff);
+
+  /* ===== Shadows (from tokens/decorations.css) ===== */
+  --shadow-1: 0 1px 2px -1px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%));
+  --shadow-2: 0 3px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 7px 14px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%));
+  --shadow-3: 0 -1px 3px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 1px 2px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 2px 5px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)), 0 4px 12px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)), 0 12px 15px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+  --shadow-4: 0 -2px 5px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 1px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 2px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)), 0 9px 9px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)), 0 16px 16px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%));
+
+  /* ===== Easing ===== */
+  --ease: cubic-bezier(0.25, 0, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.3, 1);
+}
+
+/* ===== Josh Comeau CSS Reset (preserved) ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* * {
+  margin: 0;
+} */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== Global styles ===== */
+@layer utilities {
+  html {
+    font: var(--font-body);
+    color: var(--color-neutral-11);
+    background-color: var(--color-page);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

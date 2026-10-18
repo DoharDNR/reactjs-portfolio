@@ -40,7 +40,7 @@ export function ColorSchemeToggle({ triggerText = false, optionText = true }: Co
           {triggerText && label}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end" sideOffset={8}>
         <DropdownMenuItem
           onClick={() => setColorScheme("light")}
           className={style.option}
