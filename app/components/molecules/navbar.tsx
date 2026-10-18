@@ -61,7 +61,7 @@ export function Navbar() {
           isMobileMenuOpen ? "max-h-[300px] py-4" : "max-h-0"
         }`}
       >
-        <div className="max-w-360 mx-auto px-25 flex flex-col gap-3">
+        <div className="max-w-360 mx-auto px-6 md:px-12.5 flex flex-col gap-3">
           <a href="#" className="text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2">
             Home
           </a>

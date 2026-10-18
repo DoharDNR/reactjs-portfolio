@@ -355,9 +355,9 @@ const Button = ({
   );
 };
 Button.displayName = "Button";
-const content = "_content_1gjk8_25";
-const item = "_item_1gjk8_43";
-const inset = "_inset_1gjk8_133";
+const content = "_content_1emui_25";
+const item = "_item_1emui_43";
+const inset = "_inset_1emui_133";
 const styles$1 = {
   content,
   item,
@@ -449,7 +449,7 @@ function ColorSchemeToggle({ triggerText = false, optionText = true }) {
 }
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  return /* @__PURE__ */ jsxs("nav", { className: "sticky top-0 z-10 bg-neutral-1 border-b border-neutral-7", children: [
+  return /* @__PURE__ */ jsxs("nav", { className: "sticky top-0 bg-neutral-1 border-b border-neutral-7", children: [
     /* @__PURE__ */ jsxs("div", { className: "max-w-360 mx-auto px-6 md:px-12.5 h-16 flex items-center justify-between", children: [
       /* @__PURE__ */ jsxs("a", { href: "#", className: "flex items-center gap-2", children: [
         /* @__PURE__ */ jsx("span", { className: "w-[22px] h-[22px] text-accent-9 flex items-center justify-center", children: "◆" }),
@@ -488,7 +488,7 @@ function Navbar() {
       "div",
       {
         className: `md:hidden transition-all duration-200 ease overflow-hidden border-t border-neutral-7 ${isMobileMenuOpen ? "max-h-[300px] py-4" : "max-h-0"}`,
-        children: /* @__PURE__ */ jsxs("div", { className: "max-w-360 mx-auto px-25 flex flex-col gap-3", children: [
+        children: /* @__PURE__ */ jsxs("div", { className: "max-w-360 mx-auto px-6 md:px-12.5 flex flex-col gap-3", children: [
           /* @__PURE__ */ jsx("a", { href: "#", className: "text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2", children: "Home" }),
           /* @__PURE__ */ jsx(
             "a",
@@ -641,7 +641,7 @@ function AboutSection() {
   const selectedEntry = historyEntries.find((entry2) => entry2.id === selectedId) ?? historyEntries[0];
   return /* @__PURE__ */ jsxs("main", { className: "min-h-screen", children: [
     /* @__PURE__ */ jsx(Navbar, {}),
-    /* @__PURE__ */ jsx("section", { className: "bg-neutral-1 pt-12 pb-6", children: /* @__PURE__ */ jsxs("div", { className: "max-w-360 mx-auto px-25 min-h-[285px] grid grid-cols-1 md:grid-cols-[2fr_1fr_auto] lg:grid-cols-[2fr_1fr_auto] gap-4 items-center", children: [
+    /* @__PURE__ */ jsx("section", { className: "bg-neutral-1 pt-12 pb-6", children: /* @__PURE__ */ jsxs("div", { className: "max-w-360 mx-auto px-6 md:px-12.5 min-h-[285px] grid grid-cols-1 md:grid-cols-[2fr_1fr_auto] lg:grid-cols-[2fr_1fr_auto] gap-4 items-center", children: [
       /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-start max-w-[520px]", children: [
         /* @__PURE__ */ jsx("span", { className: "inline-flex items-center gap-2 px-4 py-[3px] rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium mb-6 align-start", children: "About Me" }),
         /* @__PURE__ */ jsxs("h1", { className: "font-display text-neutral-12 text-[28px] sm:text-[36px] md:text-[42px] lg:text-5xl font-800 leading-tight", children: [
@@ -665,7 +665,7 @@ function AboutSection() {
         /* @__PURE__ */ jsx(InfoItem, { icon: /* @__PURE__ */ jsx(Code, {}), label: "Role", value: IDENTITY.role })
       ] })
     ] }) }),
-    /* @__PURE__ */ jsx("section", { className: "pt-16 pb-24 md:pb-0", children: /* @__PURE__ */ jsxs("div", { className: "max-w-360 mx-auto px-25 grid grid-cols-1 md:grid-cols-[1.25fr_1fr] lg:grid-cols-[1.25fr_1fr] gap-8 md:gap-10 lg:gap-12 items-start", children: [
+    /* @__PURE__ */ jsx("section", { className: "pt-16 pb-24 md:pb-0", children: /* @__PURE__ */ jsxs("div", { className: "max-w-360 mx-auto px-6 md:px-12.5 grid grid-cols-1 md:grid-cols-[1.25fr_1fr] lg:grid-cols-[1.25fr_1fr] gap-8 md:gap-10 lg:gap-12 items-start", children: [
       /* @__PURE__ */ jsxs("div", { className: "grid grid-rows-[auto_1fr] gap-3 min-h-125 md:min-h-150 md:h-150", children: [
         /* @__PURE__ */ jsxs("header", { children: [
           /* @__PURE__ */ jsx("span", { className: "block text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-neutral-10 mb-2", children: "MY JOURNEY" }),
@@ -801,7 +801,7 @@ function DetailCard({ entry: entry2 }) {
   ] });
 }
 function ContactSection() {
-  return /* @__PURE__ */ jsxs("section", { className: "py-20 px-25 max-w-360 mx-auto", id: "contact", children: [
+  return /* @__PURE__ */ jsxs("section", { className: "py-20 px-6 md:px-12.5 max-w-360 mx-auto", id: "contact", children: [
     /* @__PURE__ */ jsxs("header", { className: "text-center mb-12", children: [
       /* @__PURE__ */ jsx("h2", { className: "font-heading text-neutral-12 text-4xl font-bold mb-3", children: "Get In Touch" }),
       /* @__PURE__ */ jsx("p", { className: "text-neutral-11 text-[15px] leading-[26px] text-center max-w-125 mx-auto", children: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision." })
@@ -916,7 +916,7 @@ const projects = UNSAFE_withComponentProps(function Projects() {
   return /* @__PURE__ */ jsx("main", {
     className: "pt-24 pb-20",
     children: /* @__PURE__ */ jsxs("div", {
-      className: "max-w-360 mx-auto px-25",
+      className: "max-w-360 mx-auto px-6 md:px-12.5",
       children: [/* @__PURE__ */ jsx("h1", {
         className: "font-heading text-neutral-12 text-4xl font-bold text-center mb-4",
         children: "Featured Projects"
@@ -1194,7 +1194,7 @@ const route3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: projects_$slug,
   meta
 }, Symbol.toStringTag, { value: "Module" }));
-const serverManifest = { "entry": { "module": "/assets/entry.client-oPfFzfRg.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-DGmFjdXj.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/root--gruLnNf.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-B1vCJgAI.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/react-DWWJBjY7.js", "/assets/button-Bj1ynG_y.js", "/assets/index-KDJvqPid.js", "/assets/index-zZwiYWio.js"], "css": ["/assets/home-Nk9n2JZ-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects-F2VHKS4M.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/projects-DEAj6KPk.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-DtNu1PJl.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/button-Bj1ynG_y.js", "/assets/projects-DEAj6KPk.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-91806270.js", "version": "91806270", "sri": void 0 };
+const serverManifest = { "entry": { "module": "/assets/entry.client-oPfFzfRg.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-Dn7NJgLV.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/root-C_LxLRLY.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-DNonPJU3.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/react-DWWJBjY7.js", "/assets/button-Bj1ynG_y.js", "/assets/index-KDJvqPid.js", "/assets/index-zZwiYWio.js"], "css": ["/assets/home-_EbkrJ4x.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects-BzFe4D6G.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/projects-DEAj6KPk.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-DtNu1PJl.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/button-Bj1ynG_y.js", "/assets/projects-DEAj6KPk.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-0c9d3a43.js", "version": "0c9d3a43", "sri": void 0 };
 const assetsBuildDirectory = "build/client";
 const basename = "/";
 const future = { "unstable_optimizeDeps": true, "unstable_subResourceIntegrity": false, "unstable_trailingSlashAwareDataRequests": false, "v8_middleware": false, "v8_splitRouteModules": false, "v8_viteEnvironmentApi": false };

@@ -15,7 +15,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Projects() {
   return (
     <main className="pt-24 pb-20">
-      <div className="max-w-360 mx-auto px-25">
+      <div className="max-w-360 mx-auto px-6 md:px-12.5">
         <h1 className="font-heading text-neutral-12 text-4xl font-bold text-center mb-4">
           Featured Projects
         </h1>

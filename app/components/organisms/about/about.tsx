@@ -26,7 +26,7 @@ export default function AboutSection() {
 
       {/* ===== Profile Hero ===== */}
       <section className="bg-neutral-1 pt-12 pb-6">
-        <div className="max-w-360 mx-auto px-25 min-h-[285px] grid grid-cols-1 md:grid-cols-[2fr_1fr_auto] lg:grid-cols-[2fr_1fr_auto] gap-4 items-center">
+        <div className="max-w-360 mx-auto px-6 md:px-12.5 min-h-[285px] grid grid-cols-1 md:grid-cols-[2fr_1fr_auto] lg:grid-cols-[2fr_1fr_auto] gap-4 items-center">
           {/* Introductory text (left) */}
           <div className="flex flex-col items-start max-w-[520px]">
             <span className="inline-flex items-center gap-2 px-4 py-[3px] rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium mb-6 align-start">
@@ -62,7 +62,7 @@ export default function AboutSection() {
 
       {/* ===== Journey Section ===== */}
       <section className="pt-16 pb-24 md:pb-0">
-        <div className="max-w-360 mx-auto px-25 grid grid-cols-1 md:grid-cols-[1.25fr_1fr] lg:grid-cols-[1.25fr_1fr] gap-8 md:gap-10 lg:gap-12 items-start">
+        <div className="max-w-360 mx-auto px-6 md:px-12.5 grid grid-cols-1 md:grid-cols-[1.25fr_1fr] lg:grid-cols-[1.25fr_1fr] gap-8 md:gap-10 lg:gap-12 items-start">
           {/* ===== Interactive Timeline (left on desktop, top on mobile) ===== */}
             <div className="grid grid-rows-[auto_1fr] gap-3 min-h-125 md:min-h-150 md:h-150">
               <header>
