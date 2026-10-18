@@ -10,8 +10,8 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 bg-neutral-1 border-b border-neutral-7">
-      <div className="max-w-360 mx-auto px-6 md:px-12.5 h-16 flex items-center justify-between">
+    <nav className="sticky top-0 z-10 bg-neutral-1 border-b border-neutral-7">
+      <div className="max-w-360 mx-auto md:px-12.5 h-16 flex items-center justify-between">
         {/* Brand (left) */}
         <a href="#" className="flex items-center gap-2">
           <span className="w-[22px] h-[22px] text-accent-9 flex items-center justify-center">◆</span>

@@ -62,8 +62,8 @@ export default function AboutSection() {
 
       {/* ===== Journey Section ===== */}
       <section className="pt-16 pb-24 md:pb-0">
-        <div className="max-w-360 mx-auto px-6 md:px-12.5 grid grid-cols-1 md:grid-cols-[1.25fr_1fr] lg:grid-cols-[1.25fr_1fr] gap-8 md:gap-10 lg:gap-12 items-start">
-          {/* ===== Interactive Timeline (left on desktop, top on mobile) ===== */}
+        <div className="max-w-360 mx-auto px-6 md:px-12.5 grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-8 md:gap-10 lg:gap-12 items-start">
+          {/* ===== Interactive Timeline (top on tablet/mobile, left on desktop lg+) ===== */}
             <div className="grid grid-rows-[auto_1fr] gap-3 min-h-125 md:min-h-150 md:h-150">
               <header>
                 <span className="block text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-neutral-10 mb-2">
@@ -89,7 +89,7 @@ export default function AboutSection() {
               </nav>
             </div>
 
-            {/* ===== Detail Card (right on desktop, below on mobile) ===== */}
+            {/* ===== Detail Card (under timeline on tablet 768px, right on desktop lg+) ===== */}
             <article
               className="bg-neutral-2 border border-neutral-6 rounded-[10px] p-5 sm:p-6 md:p-6 shadow-1 h-full"
               aria-live="polite"
