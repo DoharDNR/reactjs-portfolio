@@ -7,7 +7,7 @@ import { renderToPipeableStream } from "react-dom/server";
 import * as React from "react";
 import { useState } from "react";
 import * as ToastPrimitive from "@radix-ui/react-toast";
-import { X, Monitor, Moon, Sun, Menu, MapPin, Mail, Code, Briefcase, GraduationCap, ChevronRight, Calendar, Check, Linkedin, Github, ArrowLeft } from "lucide-react";
+import { X, Monitor, Moon, Sun, Menu, MapPin, Mail, Code, Briefcase, GraduationCap, ChevronRight, Calendar, Check, Linkedin, Github, Palette, GitCommit, ExternalLink, ArrowLeft } from "lucide-react";
 import classNames from "classnames";
 import { useColorScheme } from "@dazl/color-scheme/react";
 import { Slot } from "@radix-ui/react-slot";
@@ -910,6 +910,515 @@ const route1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: home,
   meta: meta$3
 }, Symbol.toStringTag, { value: "Module" }));
+const projectHistoryYears = [
+  {
+    year: 2025,
+    repositories: [
+      {
+        repository: {
+          id: "repo-ecommerce-platform",
+          owner: "example-user",
+          name: "ecommerce-platform",
+          url: "https://github.com/example-user/ecommerce-platform",
+          title: "E-commerce Platform",
+          description: "A full-stack storefront with product management, shopping cart, and checkout workflows.",
+          technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+          featured: true,
+          iconType: "e-commerce",
+          displayOrder: 1
+        },
+        activity: {
+          repositoryId: "repo-ecommerce-platform",
+          year: 2025,
+          commitCount: 12,
+          firstCommitDate: "2025-03-15",
+          lastCommitDate: "2025-04-28"
+        }
+      },
+      {
+        repository: {
+          id: "repo-task-management-app",
+          owner: "example-user",
+          name: "task-management-app",
+          url: "https://github.com/example-user/task-management-app",
+          title: "Task Management App",
+          description: "A collaborative workspace for organizing tasks, deadlines, and team progress.",
+          technologies: ["React", "TypeScript", "Node.js", "MongoDB"],
+          featured: false,
+          iconType: "task-management",
+          displayOrder: 2
+        },
+        activity: {
+          repositoryId: "repo-task-management-app",
+          year: 2025,
+          commitCount: 8,
+          firstCommitDate: "2025-01-10",
+          lastCommitDate: "2025-04-20"
+        }
+      },
+      {
+        repository: {
+          id: "repo-blog-platform",
+          owner: "example-user",
+          name: "blog-platform",
+          url: "https://github.com/example-user/blog-platform",
+          title: "Blog Platform",
+          description: "A content management system for publishing articles with Markdown support and tagging.",
+          technologies: ["Astro", "TypeScript", "Tailwind CSS", "SQLite"],
+          featured: false,
+          iconType: "blog",
+          displayOrder: 3
+        },
+        activity: {
+          repositoryId: "repo-blog-platform",
+          year: 2025,
+          commitCount: 1,
+          firstCommitDate: "2025-05-02",
+          lastCommitDate: "2025-05-02"
+          // same date — spec §11.2: prefer displaying date once
+        }
+      }
+    ]
+  },
+  {
+    year: 2024,
+    repositories: [
+      {
+        repository: {
+          id: "repo-auth-service",
+          owner: "example-user",
+          name: "auth-service",
+          url: "https://github.com/example-user/auth-service",
+          title: "Authentication Service",
+          description: "An OAuth 2.0-compatible identity provider with token rotation and session management.",
+          technologies: ["Go", "PostgreSQL", "Redis", "Docker"],
+          featured: true,
+          iconType: "auth",
+          displayOrder: 1
+        },
+        activity: {
+          repositoryId: "repo-auth-service",
+          year: 2024,
+          commitCount: 24,
+          firstCommitDate: "2024-02-14",
+          lastCommitDate: "2024-11-30"
+        }
+      },
+      {
+        repository: {
+          id: "repo-finance-mobile-app",
+          owner: "example-user",
+          name: "finance-mobile-app",
+          url: "https://github.com/example-user/finance-mobile-app",
+          title: "Personal Finance Mobile App",
+          description: "A cross-platform React Native app for budgeting, expense tracking, and financial insights.",
+          technologies: ["React Native", "TypeScript", "Expo", "Supabase"],
+          featured: false,
+          iconType: "mobile",
+          displayOrder: 2
+        },
+        activity: {
+          repositoryId: "repo-finance-mobile-app",
+          year: 2024,
+          commitCount: 5,
+          firstCommitDate: "2024-06-01",
+          lastCommitDate: "2024-06-15"
+        }
+      }
+    ]
+  }
+];
+function meta$2({}) {
+  return [{
+    title: "Projects & Contributions - Dohar Siregar"
+  }, {
+    name: "description",
+    content: "A year-by-year overview of repositories I've worked on, showing commit history and technologies."
+  }];
+}
+function getTheme(useSpecTheme, isLight) {
+  if (useSpecTheme) {
+    if (isLight) {
+      return {
+        navbar: {
+          bg: "bg-white/95 backdrop-blur-sm",
+          border: "border-slate-200",
+          text: "text-slate-900"
+        },
+        page: {
+          bg: "bg-slate-50"
+        },
+        eyebrow: "text-indigo-600",
+        heading: "text-slate-900",
+        headingAccent: "text-indigo-600",
+        body: "text-slate-600",
+        card: {
+          bg: "bg-white",
+          border: "border-slate-200",
+          borderHover: "hover:border-slate-300"
+        },
+        badge: {
+          bg: "bg-indigo-50",
+          border: "border-indigo-200",
+          text: "text-indigo-700"
+        },
+        tech: {
+          bg: "bg-slate-100",
+          text: "text-slate-700"
+        },
+        meta: {
+          text: "text-slate-600",
+          border: "border-slate-200",
+          mutedText: "text-slate-500"
+        },
+        link: {
+          text: "text-indigo-600",
+          textHover: "hover:text-indigo-700"
+        },
+        footer: {
+          border: "border-slate-200",
+          text: "text-slate-500"
+        },
+        timeline: {
+          dot: "bg-indigo-500",
+          dotRing: "ring-indigo-500/20",
+          line: "bg-slate-200"
+        }
+      };
+    } else {
+      return {
+        navbar: {
+          bg: "bg-slate-900/95 backdrop-blur-sm",
+          border: "border-slate-800",
+          text: "text-white"
+        },
+        page: {
+          bg: "bg-[#020617]"
+        },
+        eyebrow: "text-indigo-300",
+        heading: "text-white",
+        headingAccent: "text-indigo-400",
+        body: "text-slate-400",
+        card: {
+          bg: "bg-slate-900/60",
+          border: "border-slate-800",
+          borderHover: "hover:border-slate-700"
+        },
+        badge: {
+          bg: "bg-indigo-400/10",
+          border: "border-indigo-400/20",
+          text: "text-indigo-300"
+        },
+        tech: {
+          bg: "bg-slate-800",
+          text: "text-slate-300"
+        },
+        meta: {
+          text: "text-slate-400",
+          border: "border-slate-800",
+          mutedText: "text-slate-500"
+        },
+        link: {
+          text: "text-indigo-300",
+          textHover: "hover:text-indigo-200"
+        },
+        footer: {
+          border: "border-slate-800",
+          text: "text-slate-500"
+        },
+        timeline: {
+          dot: "bg-indigo-400",
+          dotRing: "ring-indigo-400/15",
+          line: "bg-slate-800"
+        }
+      };
+    }
+  } else {
+    return {
+      navbar: {
+        bg: "bg-neutral-1",
+        border: "border-neutral-7",
+        text: "text-neutral-12"
+      },
+      page: {
+        bg: "bg-page"
+      },
+      eyebrow: "text-accent-11",
+      heading: "text-neutral-12",
+      headingAccent: "text-accent-9",
+      body: "text-neutral-11",
+      card: {
+        bg: "bg-neutral-2",
+        border: "border-neutral-5",
+        borderHover: "hover:border-neutral-6"
+      },
+      badge: {
+        bg: "bg-accent-3",
+        border: "border-accent-6",
+        text: "text-accent-11"
+      },
+      tech: {
+        bg: "bg-neutral-4",
+        text: "text-neutral-11"
+      },
+      meta: {
+        text: "text-neutral-10",
+        border: "border-neutral-5",
+        mutedText: "text-neutral-9"
+      },
+      link: {
+        text: "text-accent-11",
+        textHover: "hover:text-accent-9"
+      },
+      footer: {
+        border: "border-neutral-6",
+        text: "text-neutral-9"
+      },
+      timeline: {
+        dot: "bg-accent-9",
+        dotRing: "ring-accent-9/15",
+        line: "bg-neutral-6"
+      }
+    };
+  }
+}
+function ProjectIcon({
+  type,
+  isLight
+}) {
+  const icon2 = /* @__PURE__ */ jsx("svg", {
+    className: "size-6 shrink-0",
+    fill: "none",
+    stroke: "currentColor",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true",
+    children: /* @__PURE__ */ jsx("path", {
+      d: "M12 6v6l4 2"
+    })
+  });
+  const baseClass = "flex size-12 shrink-0 items-center justify-center rounded-xl";
+  const lightDark = (light, dark) => isLight ? light : dark;
+  switch (type) {
+    case "e-commerce":
+      return /* @__PURE__ */ jsx("span", {
+        className: `${baseClass} ${lightDark("bg-indigo-100 text-indigo-700", "bg-indigo-500/15 text-indigo-300")}`,
+        children: icon2
+      });
+    case "task-management":
+      return /* @__PURE__ */ jsx("span", {
+        className: `${baseClass} ${lightDark("bg-emerald-100 text-emerald-700", "bg-emerald-500/15 text-emerald-300")}`,
+        children: icon2
+      });
+    case "blog":
+      return /* @__PURE__ */ jsx("span", {
+        className: `${baseClass} ${lightDark("bg-fuchsia-100 text-fuchsia-700", "bg-fuchsia-500/15 text-fuchsia-300")}`,
+        children: icon2
+      });
+    case "auth":
+      return /* @__PURE__ */ jsx("span", {
+        className: `${baseClass} ${lightDark("bg-sky-100 text-sky-700", "bg-sky-500/15 text-sky-300")}`,
+        children: icon2
+      });
+    case "mobile":
+      return /* @__PURE__ */ jsx("span", {
+        className: `${baseClass} ${lightDark("bg-amber-100 text-amber-700", "bg-amber-500/15 text-amber-300")}`,
+        children: icon2
+      });
+    default:
+      return /* @__PURE__ */ jsx("span", {
+        className: `${baseClass} ${lightDark("bg-slate-100 text-slate-700", "bg-slate-500/15 text-slate-300")}`,
+        children: icon2
+      });
+  }
+}
+const projects$1 = UNSAFE_withComponentProps(function Projects() {
+  const [useSpecTheme, setUseSpecTheme] = useState(true);
+  const {
+    isLight
+  } = useColorScheme();
+  const theme = getTheme(useSpecTheme, isLight);
+  return /* @__PURE__ */ jsxs(Fragment, {
+    children: [/* @__PURE__ */ jsx("nav", {
+      className: `sticky top-0 z-10 border-b ${theme.navbar.bg} ${theme.navbar.border}`,
+      children: /* @__PURE__ */ jsxs("div", {
+        className: "mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8",
+        children: [/* @__PURE__ */ jsx("div", {
+          className: "flex items-center gap-3",
+          children: /* @__PURE__ */ jsx("h2", {
+            className: `text-sm font-semibold ${theme.navbar.text}`,
+            children: "GitHub History"
+          })
+        }), /* @__PURE__ */ jsxs("div", {
+          className: "flex items-center gap-3",
+          children: [/* @__PURE__ */ jsxs("button", {
+            type: "button",
+            onClick: () => setUseSpecTheme((v) => !v),
+            className: `inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs font-medium transition ${isLight ? "border-slate-300 bg-slate-100 text-slate-700 hover:bg-slate-200" : useSpecTheme ? "border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-slate-800" : "border-neutral-5 bg-neutral-2 text-neutral-11 hover:bg-neutral-3"}`,
+            "aria-label": "Toggle theme palette",
+            children: [/* @__PURE__ */ jsx(Palette, {
+              size: 14,
+              "aria-hidden": "true"
+            }), useSpecTheme ? "Spec" : "Project"]
+          }), /* @__PURE__ */ jsx(ColorSchemeToggle, {})]
+        })]
+      })
+    }), /* @__PURE__ */ jsxs("main", {
+      className: `mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 lg:py-16 ${theme.page.bg}`,
+      children: [/* @__PURE__ */ jsxs("div", {
+        className: "mb-12 max-w-3xl",
+        children: [/* @__PURE__ */ jsx("p", {
+          className: `mb-3 text-xs font-semibold uppercase tracking-[0.22em] ${theme.eyebrow}`,
+          children: "MY GITHUB JOURNEY"
+        }), /* @__PURE__ */ jsxs("h1", {
+          className: `text-3xl font-semibold tracking-tight sm:text-4xl ${theme.heading}`,
+          children: ["Projects & ", /* @__PURE__ */ jsx("span", {
+            className: theme.headingAccent,
+            children: "Contributions"
+          })]
+        }), /* @__PURE__ */ jsx("p", {
+          className: `mt-4 max-w-2xl text-sm leading-6 sm:text-base ${theme.body}`,
+          children: "A year-by-year overview of repositories I've worked on, showing the first and last commit dates within each year."
+        })]
+      }), /* @__PURE__ */ jsx("div", {
+        className: "space-y-12",
+        children: [...projectHistoryYears].reverse().map((yearGroup, yearIndex) => {
+          const repoCount = yearGroup.repositories.length;
+          const isOldestYear = yearIndex === 0;
+          return /* @__PURE__ */ jsx("section", {
+            className: "relative",
+            children: /* @__PURE__ */ jsxs("div", {
+              className: "grid grid-cols-1 gap-5 md:grid-cols-[130px_minmax(0,1fr)] md:gap-8",
+              children: [/* @__PURE__ */ jsxs("div", {
+                className: "relative",
+                children: [/* @__PURE__ */ jsxs("div", {
+                  className: "relative hidden md:block",
+                  children: [/* @__PURE__ */ jsxs("div", {
+                    className: "relative flex items-start",
+                    children: [/* @__PURE__ */ jsx("span", {
+                      className: `flex size-3 shrink-0 rounded-full ring-4 ${isOldestYear ? `${theme.timeline.dot} ${theme.timeline.dotRing}` : `${isLight ? "bg-slate-400" : "bg-slate-500"} ring-slate-500/15`}`
+                    }), /* @__PURE__ */ jsxs("div", {
+                      className: "ml-5",
+                      children: [/* @__PURE__ */ jsx("h2", {
+                        className: `text-2xl font-semibold tracking-tight ${theme.heading}`,
+                        children: yearGroup.year
+                      }), /* @__PURE__ */ jsx("p", {
+                        className: `mt-1 text-sm ${theme.body}`,
+                        children: repoCount === 1 ? "1 repository" : `${repoCount} repositories`
+                      })]
+                    })]
+                  }), /* @__PURE__ */ jsx("div", {
+                    className: `absolute left-[5px] top-6 h-[calc(100%+35rem)] w-px ${theme.timeline.line}`
+                  })]
+                }), /* @__PURE__ */ jsxs("div", {
+                  className: "md:hidden",
+                  children: [/* @__PURE__ */ jsx("h2", {
+                    className: `text-2xl font-semibold tracking-tight ${theme.heading}`,
+                    children: yearGroup.year
+                  }), /* @__PURE__ */ jsx("p", {
+                    className: `mt-1 text-sm ${theme.body}`,
+                    children: repoCount === 1 ? "1 repository" : `${repoCount} repositories`
+                  })]
+                })]
+              }), /* @__PURE__ */ jsx("div", {
+                className: "space-y-4",
+                children: yearGroup.repositories.sort((a, b) => (a.repository.displayOrder ?? 99) - (b.repository.displayOrder ?? 99)).map((entry2) => /* @__PURE__ */ jsx("article", {
+                  className: `rounded-2xl border p-5 transition sm:p-6 ${theme.card.bg} ${theme.card.border} ${theme.card.borderHover}`,
+                  children: /* @__PURE__ */ jsxs("div", {
+                    className: "flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between",
+                    children: [/* @__PURE__ */ jsxs("div", {
+                      className: "flex min-w-0 gap-4",
+                      children: [/* @__PURE__ */ jsx(ProjectIcon, {
+                        type: entry2.repository.iconType,
+                        isLight
+                      }), /* @__PURE__ */ jsxs("div", {
+                        className: "flex flex-col",
+                        children: [/* @__PURE__ */ jsxs("div", {
+                          className: "flex items-center gap-2",
+                          children: [/* @__PURE__ */ jsx("h3", {
+                            className: `text-base font-semibold ${theme.heading}`,
+                            children: entry2.repository.title
+                          }), entry2.repository.featured && /* @__PURE__ */ jsx("span", {
+                            className: `rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${theme.badge.bg} ${theme.badge.border} ${theme.badge.text}`,
+                            "aria-label": "Featured project",
+                            children: "Featured"
+                          })]
+                        }), /* @__PURE__ */ jsx("p", {
+                          className: `mt-1 max-w-2xl text-sm leading-6 ${theme.body}`,
+                          children: entry2.repository.description
+                        }), /* @__PURE__ */ jsx("div", {
+                          className: "mt-3 flex flex-wrap gap-2",
+                          children: entry2.repository.technologies.map((tech) => /* @__PURE__ */ jsx("span", {
+                            className: `rounded-full px-2.5 py-1 text-xs ${theme.tech.bg} ${theme.tech.text}`,
+                            children: tech
+                          }, tech))
+                        })]
+                      })]
+                    }), /* @__PURE__ */ jsxs("div", {
+                      className: `flex shrink-0 flex-col gap-3 border-t pt-4 text-sm lg:min-w-56 lg:border-0 lg:pt-1 ${theme.meta.border} ${theme.meta.text}`,
+                      children: [/* @__PURE__ */ jsxs("div", {
+                        className: "flex items-center gap-2",
+                        children: [/* @__PURE__ */ jsx(GitCommit, {
+                          size: 14,
+                          "aria-hidden": "true"
+                        }), /* @__PURE__ */ jsx("span", {
+                          children: entry2.activity.commitCount === 1 ? `1 commit in ${entry2.activity.year}` : `${entry2.activity.commitCount} commits in ${entry2.activity.year}`
+                        })]
+                      }), /* @__PURE__ */ jsxs("div", {
+                        className: "flex items-center gap-2",
+                        children: [/* @__PURE__ */ jsx(Calendar, {
+                          size: 14,
+                          "aria-hidden": "true"
+                        }), /* @__PURE__ */ jsxs("span", {
+                          children: [new Date(entry2.activity.firstCommitDate).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric"
+                          }), entry2.activity.firstCommitDate !== entry2.activity.lastCommitDate && /* @__PURE__ */ jsxs(Fragment, {
+                            children: [" → ", /* @__PURE__ */ jsx("span", {
+                              className: theme.meta.mutedText,
+                              children: new Date(entry2.activity.lastCommitDate).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric"
+                              })
+                            })]
+                          })]
+                        })]
+                      }), /* @__PURE__ */ jsxs("a", {
+                        href: entry2.repository.url,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        className: `inline-flex w-fit items-center gap-1 text-xs font-medium transition ${theme.link.text} ${theme.link.textHover}`,
+                        children: ["View repository ", /* @__PURE__ */ jsx(ExternalLink, {
+                          size: 12,
+                          "aria-hidden": "true"
+                        })]
+                      })]
+                    })]
+                  })
+                }, entry2.repository.id))
+              })]
+            })
+          }, yearGroup.year);
+        })
+      }), /* @__PURE__ */ jsx("footer", {
+        className: `mt-16 border-t pt-6 ${theme.footer.border}`,
+        children: /* @__PURE__ */ jsx("p", {
+          className: `text-xs ${theme.footer.text}`,
+          children: "Sample content only. Replace project details, commit dates, counts, technologies, and links with verified GitHub data."
+        })
+      })]
+    })]
+  });
+});
+const route2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: projects$1,
+  meta: meta$2
+}, Symbol.toStringTag, { value: "Module" }));
 const videobelajar1 = "/assets/videobelajar1-CL3ImK_e.webp";
 const videobelajar2 = "/assets/videobelajar2-Bd6_iCjG.webp";
 const videobelajar3 = "/assets/videobelajar3-GgxRbnxP.webp";
@@ -917,7 +1426,7 @@ const videobelajar4 = "/assets/videobelajar4-mBXrUtd9.webp";
 const videobelajar5 = "/assets/videobelajar5-D0JM61zy.webp";
 const videobelajar6 = "/assets/videobelajar6-DDAtQ8UH.webp";
 const videobelajar7 = "/assets/videobelajar7-jv0xqLaO.webp";
-const projects$1 = [
+const projects = [
   {
     id: "1",
     slug: "video-belajar-platform",
@@ -938,75 +1447,8 @@ const projects$1 = [
   }
 ];
 function getProjectBySlug(slug) {
-  return projects$1.find((project) => project.slug === slug);
+  return projects.find((project) => project.slug === slug);
 }
-function meta$2({}) {
-  return [{
-    title: "Projects - Dohar Siregar"
-  }, {
-    name: "description",
-    content: "A selection of recent work showcasing my skills and expertise."
-  }];
-}
-const projects = UNSAFE_withComponentProps(function Projects() {
-  return /* @__PURE__ */ jsx("main", {
-    className: "pt-24 pb-20",
-    children: /* @__PURE__ */ jsxs("div", {
-      className: "max-w-360 mx-auto px-6 md:px-12.5",
-      children: [/* @__PURE__ */ jsx("h1", {
-        className: "font-heading text-neutral-12 text-4xl font-bold text-center mb-4",
-        children: "Featured Projects"
-      }), /* @__PURE__ */ jsx("p", {
-        className: "text-neutral-11 text-center mb-12 max-w-150 mx-auto",
-        children: "A selection of recent work showcasing my skills and expertise"
-      }), /* @__PURE__ */ jsx("div", {
-        className: "grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8",
-        children: projects$1.map((project) => /* @__PURE__ */ jsxs("article", {
-          className: "bg-neutral-2 rounded-[6px] overflow-hidden border border-neutral-5 transition-all 300ms ease flex flex-col h-full group",
-          children: [/* @__PURE__ */ jsx("a", {
-            href: `/projects/${project.slug}`,
-            children: /* @__PURE__ */ jsx("img", {
-              src: project.images.thumbnail,
-              alt: project.title,
-              className: "w-full h-60 object-cover transition-transform 300ms ease group-hover:scale-105"
-            })
-          }), /* @__PURE__ */ jsxs("div", {
-            className: "p-6 flex-1 flex flex-col",
-            children: [/* @__PURE__ */ jsx("span", {
-              className: "text-[11px] text-accent-11 uppercase tracking-wider font-semibold mb-2",
-              children: project.category
-            }), /* @__PURE__ */ jsx("h3", {
-              className: "font-subheading text-neutral-12 text-[18px] font-semibold mb-3",
-              children: /* @__PURE__ */ jsx("a", {
-                href: `/projects/${project.slug}`,
-                className: "hover:text-accent-9 transition-colors",
-                children: project.title
-              })
-            }), /* @__PURE__ */ jsx("p", {
-              className: "text-neutral-11 text-[13px] leading-normal mb-4 flex-1",
-              children: project.summary
-            }), /* @__PURE__ */ jsxs("div", {
-              className: "flex items-center justify-between pt-4 border-t border-neutral-5 mt-auto",
-              children: [/* @__PURE__ */ jsx("span", {
-                className: "text-[13px] text-neutral-10",
-                children: project.year
-              }), /* @__PURE__ */ jsx("a", {
-                href: `/projects/${project.slug}`,
-                className: "inline-flex items-center gap-2 text-accent-11 text-[13px] font-semibold transition-colors 200ms ease hover:text-accent-9",
-                children: "View Details"
-              })]
-            })]
-          })]
-        }, project.id))
-      })]
-    })
-  });
-});
-const route2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: projects,
-  meta: meta$2
-}, Symbol.toStringTag, { value: "Module" }));
 const container = "_container_9njrw_1";
 const header = "_header_9njrw_7";
 const headerContent = "_headerContent_9njrw_13";
@@ -1230,7 +1672,7 @@ const route3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: projects_$slug,
   meta
 }, Symbol.toStringTag, { value: "Module" }));
-const serverManifest = { "entry": { "module": "/assets/entry.client-oPfFzfRg.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-C0g9ZSQW.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/root-DyH74y0x.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-BuPKhqy2.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/react-DWWJBjY7.js", "/assets/button-Bj1ynG_y.js", "/assets/index-KDJvqPid.js", "/assets/index-zZwiYWio.js"], "css": ["/assets/home-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects-BzFe4D6G.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/projects-DEAj6KPk.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-DtNu1PJl.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/button-Bj1ynG_y.js", "/assets/projects-DEAj6KPk.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-40c2f671.js", "version": "40c2f671", "sri": void 0 };
+const serverManifest = { "entry": { "module": "/assets/entry.client-oPfFzfRg.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-Dm4QW8Da.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/root-CE7787oa.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-8XklD0Np.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/color-scheme-toggle-TCS4FSMK.js", "/assets/index-KDJvqPid.js", "/assets/react-DWWJBjY7.js", "/assets/index-zZwiYWio.js", "/assets/button-Bj1ynG_y.js"], "css": ["/assets/color-scheme-toggle-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects-DkGVqNUJ.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/color-scheme-toggle-TCS4FSMK.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js", "/assets/button-Bj1ynG_y.js", "/assets/index-zZwiYWio.js"], "css": ["/assets/color-scheme-toggle-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-C7R8mPWG.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/button-Bj1ynG_y.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-6ab8628b.js", "version": "6ab8628b", "sri": void 0 };
 const assetsBuildDirectory = "build/client";
 const basename = "/";
 const future = { "unstable_optimizeDeps": true, "unstable_subResourceIntegrity": false, "unstable_trailingSlashAwareDataRequests": false, "v8_middleware": false, "v8_splitRouteModules": false, "v8_viteEnvironmentApi": false };

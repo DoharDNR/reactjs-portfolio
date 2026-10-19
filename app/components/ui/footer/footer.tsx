@@ -16,7 +16,7 @@ export function Footer() {
           {/* Version row */}
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-400 line-through">v1.0.0</span>
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-200">v1.0.1</span>
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-200">v1.2.1</span>
           </div>
 
           {/* Status row */}
