@@ -1,13 +1,13 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { PassThrough } from "node:stream";
 import { createReadableStreamFromReadable } from "@react-router/node";
-import { ServerRouter, UNSAFE_withComponentProps, Outlet, UNSAFE_withErrorBoundaryProps, isRouteErrorResponse, Meta, Links, ScrollRestoration, Scripts, useParams, Link } from "react-router";
+import { ServerRouter, UNSAFE_withComponentProps, Outlet, UNSAFE_withErrorBoundaryProps, isRouteErrorResponse, Meta, Links, ScrollRestoration, Scripts, Link, useParams } from "react-router";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import * as React from "react";
 import { useState } from "react";
 import * as ToastPrimitive from "@radix-ui/react-toast";
-import { X, Monitor, Moon, Sun, Menu, MapPin, Mail, Code, Briefcase, GraduationCap, ChevronRight, Calendar, Check, Linkedin, Github, Palette, GitCommit, ExternalLink, ArrowLeft } from "lucide-react";
+import { X, Monitor, Moon, Sun, Menu, MapPin, Mail, Code, Briefcase, GraduationCap, ChevronRight, Calendar, Check, Linkedin, Github, ArrowLeft, Palette, GitCommit, ExternalLink } from "lucide-react";
 import classNames from "classnames";
 import { useColorScheme } from "@dazl/color-scheme/react";
 import { Slot } from "@radix-ui/react-slot";
@@ -245,7 +245,7 @@ function Footer() {
     /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-end gap-1", children: [
       /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ jsx("span", { className: "text-xs text-gray-400 line-through", children: "v1.0.0" }),
-        /* @__PURE__ */ jsx("span", { className: "text-sm font-medium text-gray-700 dark:text-gray-200", children: "v1.0.1" })
+        /* @__PURE__ */ jsx("span", { className: "text-sm font-medium text-gray-700 dark:text-gray-200", children: "v1.2.1" })
       ] }),
       /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400", children: [
         /* @__PURE__ */ jsxs(
@@ -912,6 +912,32 @@ const route1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
 }, Symbol.toStringTag, { value: "Module" }));
 const projectHistoryYears = [
   {
+    year: 2026,
+    repositories: [
+      {
+        repository: {
+          id: "repo-ai-chatbot",
+          owner: "example-user",
+          name: "ai-chatbot",
+          url: "https://github.com/example-user/ai-chatbot",
+          title: "AI Chatbot Assistant",
+          description: "An intelligent conversational interface powered by large language models with context awareness and memory.",
+          technologies: ["Python", "FastAPI", "OpenAI", "React", "WebSocket"],
+          featured: true,
+          iconType: "auth",
+          displayOrder: 1
+        },
+        activity: {
+          repositoryId: "repo-ai-chatbot",
+          year: 2026,
+          commitCount: 18,
+          firstCommitDate: "2026-01-05",
+          lastCommitDate: "2026-09-20"
+        }
+      }
+    ]
+  },
+  {
     year: 2025,
     repositories: [
       {
@@ -1023,6 +1049,27 @@ const projectHistoryYears = [
           commitCount: 5,
           firstCommitDate: "2024-06-01",
           lastCommitDate: "2024-06-15"
+        }
+      },
+      {
+        repository: {
+          id: "repo-weather-dashboard",
+          owner: "example-user",
+          name: "weather-dashboard",
+          url: "https://github.com/example-user/weather-dashboard",
+          title: "Weather Dashboard",
+          description: "A responsive weather forecasting application with real-time data visualization and location search.",
+          technologies: ["Vue.js", "TypeScript", "Chart.js", "OpenWeather API"],
+          featured: false,
+          iconType: "task-management",
+          displayOrder: 3
+        },
+        activity: {
+          repositoryId: "repo-weather-dashboard",
+          year: 2024,
+          commitCount: 15,
+          firstCommitDate: "2024-03-10",
+          lastCommitDate: "2024-08-22"
         }
       }
     ]
@@ -1245,12 +1292,20 @@ const projects$1 = UNSAFE_withComponentProps(function Projects() {
       className: `sticky top-0 z-10 border-b ${theme.navbar.bg} ${theme.navbar.border}`,
       children: /* @__PURE__ */ jsxs("div", {
         className: "mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8",
-        children: [/* @__PURE__ */ jsx("div", {
+        children: [/* @__PURE__ */ jsxs("div", {
           className: "flex items-center gap-3",
-          children: /* @__PURE__ */ jsx("h2", {
+          children: [/* @__PURE__ */ jsxs(Link, {
+            to: "/",
+            className: `inline-flex items-center gap-1 text-xs font-medium transition ${useSpecTheme ? "text-slate-500 hover:text-slate-300" : "text-neutral-9 hover:text-neutral-12"}`,
+            "aria-label": "Back to home",
+            children: [/* @__PURE__ */ jsx(ArrowLeft, {
+              size: 14,
+              "aria-hidden": "true"
+            }), "Home"]
+          }), /* @__PURE__ */ jsx("h2", {
             className: `text-sm font-semibold ${theme.navbar.text}`,
             children: "GitHub History"
-          })
+          })]
         }), /* @__PURE__ */ jsxs("div", {
           className: "flex items-center gap-3",
           children: [/* @__PURE__ */ jsxs("button", {
@@ -1284,21 +1339,21 @@ const projects$1 = UNSAFE_withComponentProps(function Projects() {
         })]
       }), /* @__PURE__ */ jsx("div", {
         className: "space-y-12",
-        children: [...projectHistoryYears].reverse().map((yearGroup, yearIndex) => {
+        children: projectHistoryYears.map((yearGroup, yearIndex) => {
           const repoCount = yearGroup.repositories.length;
-          const isOldestYear = yearIndex === 0;
+          const isNewestYear = yearIndex === 0;
           return /* @__PURE__ */ jsx("section", {
             className: "relative",
             children: /* @__PURE__ */ jsxs("div", {
               className: "grid grid-cols-1 gap-5 md:grid-cols-[130px_minmax(0,1fr)] md:gap-8",
               children: [/* @__PURE__ */ jsxs("div", {
-                className: "relative",
+                className: "relative h-full",
                 children: [/* @__PURE__ */ jsxs("div", {
-                  className: "relative hidden md:block",
+                  className: "relative hidden h-full md:block",
                   children: [/* @__PURE__ */ jsxs("div", {
-                    className: "relative flex items-start",
+                    className: "relative flex items-center",
                     children: [/* @__PURE__ */ jsx("span", {
-                      className: `flex size-3 shrink-0 rounded-full ring-4 ${isOldestYear ? `${theme.timeline.dot} ${theme.timeline.dotRing}` : `${isLight ? "bg-slate-400" : "bg-slate-500"} ring-slate-500/15`}`
+                      className: `flex size-3 shrink-0 rounded-full ring-4 ${isNewestYear ? `${theme.timeline.dot} ${theme.timeline.dotRing}` : `${isLight ? "bg-slate-400" : "bg-slate-500"} ring-slate-500/15`}`
                     }), /* @__PURE__ */ jsxs("div", {
                       className: "ml-5",
                       children: [/* @__PURE__ */ jsx("h2", {
@@ -1310,7 +1365,10 @@ const projects$1 = UNSAFE_withComponentProps(function Projects() {
                       })]
                     })]
                   }), /* @__PURE__ */ jsx("div", {
-                    className: `absolute left-[5px] top-6 h-[calc(100%+35rem)] w-px ${theme.timeline.line}`
+                    className: `absolute left-[5px] top-7 bottom-0 w-px ${theme.timeline.line}`,
+                    style: {
+                      height: "calc(100% + 1rem)"
+                    }
                   })]
                 }), /* @__PURE__ */ jsxs("div", {
                   className: "md:hidden",
@@ -1672,7 +1730,7 @@ const route3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: projects_$slug,
   meta
 }, Symbol.toStringTag, { value: "Module" }));
-const serverManifest = { "entry": { "module": "/assets/entry.client-oPfFzfRg.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-Dm4QW8Da.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/index-zZwiYWio.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/root-CE7787oa.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-8XklD0Np.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/color-scheme-toggle-TCS4FSMK.js", "/assets/index-KDJvqPid.js", "/assets/react-DWWJBjY7.js", "/assets/index-zZwiYWio.js", "/assets/button-Bj1ynG_y.js"], "css": ["/assets/color-scheme-toggle-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects-DkGVqNUJ.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/color-scheme-toggle-TCS4FSMK.js", "/assets/react-DWWJBjY7.js", "/assets/index-KDJvqPid.js", "/assets/button-Bj1ynG_y.js", "/assets/index-zZwiYWio.js"], "css": ["/assets/color-scheme-toggle-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-C7R8mPWG.js", "imports": ["/assets/chunk-EPOLDU6W-BTM01FNe.js", "/assets/button-Bj1ynG_y.js", "/assets/index-KDJvqPid.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-6ab8628b.js", "version": "6ab8628b", "sri": void 0 };
+const serverManifest = { "entry": { "module": "/assets/entry.client-DhR9Yz6Z.js", "imports": ["/assets/chunk-EPOLDU6W-CTaaABDn.js", "/assets/index-BZ5Eud5I.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-D0Yv-aq5.js", "imports": ["/assets/chunk-EPOLDU6W-CTaaABDn.js", "/assets/index-BZ5Eud5I.js", "/assets/react-B7d0Lpy4.js", "/assets/index-CAvnJMg2.js"], "css": ["/assets/root-CqXzutpL.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/home": { "id": "routes/home", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/home-CkmD8FUn.js", "imports": ["/assets/chunk-EPOLDU6W-CTaaABDn.js", "/assets/color-scheme-toggle-Dst7Bi8U.js", "/assets/index-CAvnJMg2.js", "/assets/react-B7d0Lpy4.js", "/assets/index-BZ5Eud5I.js", "/assets/button-B2dumKwo.js"], "css": ["/assets/color-scheme-toggle-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects": { "id": "routes/projects", "parentId": "root", "path": "projects", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects--au76khs.js", "imports": ["/assets/chunk-EPOLDU6W-CTaaABDn.js", "/assets/color-scheme-toggle-Dst7Bi8U.js", "/assets/react-B7d0Lpy4.js", "/assets/arrow-left-kGEn6w6s.js", "/assets/index-CAvnJMg2.js", "/assets/button-B2dumKwo.js", "/assets/index-BZ5Eud5I.js"], "css": ["/assets/color-scheme-toggle-Cd_sofT0.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/projects.$slug": { "id": "routes/projects.$slug", "parentId": "root", "path": "projects/:slug", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/projects._slug-CAINQnVz.js", "imports": ["/assets/chunk-EPOLDU6W-CTaaABDn.js", "/assets/button-B2dumKwo.js", "/assets/arrow-left-kGEn6w6s.js", "/assets/index-CAvnJMg2.js"], "css": ["/assets/projects-BN5DdS2-.css", "/assets/button-C4QZbAR-.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-fef9f229.js", "version": "fef9f229", "sri": void 0 };
 const assetsBuildDirectory = "build/client";
 const basename = "/";
 const future = { "unstable_optimizeDeps": true, "unstable_subResourceIntegrity": false, "unstable_trailingSlashAwareDataRequests": false, "v8_middleware": false, "v8_splitRouteModules": false, "v8_viteEnvironmentApi": false };

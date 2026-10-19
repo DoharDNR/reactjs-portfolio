@@ -4,6 +4,8 @@ import { projectHistoryYears } from "~/data/projectHistory";
 import { useState } from "react";
 import { GitCommit, Calendar, ExternalLink, Palette } from "lucide-react";
 import { ColorSchemeToggle } from "~/components/ui/color-scheme-toggle/color-scheme-toggle";
+import { Link } from "react-router";
+import { ArrowLeft } from "lucide-react";
 import { useColorScheme } from "@dazl/color-scheme/react";
 
 export function meta({}: Route.MetaArgs) {
@@ -142,6 +144,18 @@ export default function Projects() {
       <nav className={`sticky top-0 z-10 border-b ${theme.navbar.bg} ${theme.navbar.border}`}>
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
           <div className="flex items-center gap-3">
+            <Link
+              to="/"
+              className={`inline-flex items-center gap-1 text-xs font-medium transition ${
+                useSpecTheme
+                  ? "text-slate-500 hover:text-slate-300"
+                  : "text-neutral-9 hover:text-neutral-12"
+              }`}
+              aria-label="Back to home"
+            >
+              <ArrowLeft size={14} aria-hidden="true" />
+              Home
+            </Link>
             <h2 className={`text-sm font-semibold ${theme.navbar.text}`}>
               GitHub History
             </h2>
@@ -189,24 +203,24 @@ export default function Projects() {
 
         {/* ===== Timeline (spec §6) ===== */}
         <div className="space-y-12">
-          {[...projectHistoryYears].reverse().map((yearGroup, yearIndex) => {
+          {projectHistoryYears.map((yearGroup, yearIndex) => {
             const repoCount = yearGroup.repositories.length;
-            const isOldestYear = yearIndex === 0;
-            const isLastYear = yearIndex === [...projectHistoryYears].length - 1;
+            const isNewestYear = yearIndex === 0;
+            const isLastYear = yearIndex === projectHistoryYears.length - 1;
 
             return (
               <section key={yearGroup.year} className="relative">
                 {/* Two-column grid: year marker | cards */}
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-[130px_minmax(0,1fr)] md:gap-8">
                   {/* ===== Year marker column (spec §7) ===== */}
-                  <div className="relative">
+                  <div className="relative h-full">
                     {/* Desktop: dot + connector */}
-                    <div className="relative hidden md:block">
+                    <div className="relative hidden h-full md:block">
                       {/* Timeline dot */}
-                      <div className="relative flex items-start">
+                      <div className="relative flex items-center">
                         <span
                           className={`flex size-3 shrink-0 rounded-full ring-4 ${
-                            isOldestYear
+                            isNewestYear
                               ? `${theme.timeline.dot} ${theme.timeline.dotRing}`
                               : `${isLight ? "bg-slate-400" : "bg-slate-500"} ring-slate-500/15`
                           }`}
@@ -222,9 +236,10 @@ export default function Projects() {
                         </div>
                       </div>
 
-                      {/* Connector line (extends down from dot) - show on all years */}
+                      {/* Connector line (matches section height + gap to next section) */}
                       <div
-                        className={`absolute left-[5px] top-6 h-[calc(100%+35rem)] w-px ${theme.timeline.line}`}
+                        className={`absolute left-[5px] top-7 bottom-0 w-px ${theme.timeline.line}`}
+                        style={{ height: 'calc(100% + 1rem)' }}
                       />
                     </div>
 

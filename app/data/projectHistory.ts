@@ -34,6 +34,33 @@ export type RepositoryYearActivity = {
 // Fictional sample data per spec §18 example groups.
 export const projectHistoryYears: ProjectHistoryYear[] = [
   {
+    year: 2026,
+    repositories: [
+      {
+        repository: {
+          id: "repo-ai-chatbot",
+          owner: "example-user",
+          name: "ai-chatbot",
+          url: "https://github.com/example-user/ai-chatbot",
+          title: "AI Chatbot Assistant",
+          description:
+            "An intelligent conversational interface powered by large language models with context awareness and memory.",
+          technologies: ["Python", "FastAPI", "OpenAI", "React", "WebSocket"],
+          featured: true,
+          iconType: "auth",
+          displayOrder: 1,
+        },
+        activity: {
+          repositoryId: "repo-ai-chatbot",
+          year: 2026,
+          commitCount: 18,
+          firstCommitDate: "2026-01-05",
+          lastCommitDate: "2026-09-20",
+        },
+      },
+    ],
+  },
+  {
     year: 2025,
     repositories: [
       {
@@ -149,6 +176,28 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
           commitCount: 5,
           firstCommitDate: "2024-06-01",
           lastCommitDate: "2024-06-15",
+        },
+      },
+      {
+        repository: {
+          id: "repo-weather-dashboard",
+          owner: "example-user",
+          name: "weather-dashboard",
+          url: "https://github.com/example-user/weather-dashboard",
+          title: "Weather Dashboard",
+          description:
+            "A responsive weather forecasting application with real-time data visualization and location search.",
+          technologies: ["Vue.js", "TypeScript", "Chart.js", "OpenWeather API"],
+          featured: false,
+          iconType: "task-management",
+          displayOrder: 3,
+        },
+        activity: {
+          repositoryId: "repo-weather-dashboard",
+          year: 2024,
+          commitCount: 15,
+          firstCommitDate: "2024-03-10",
+          lastCommitDate: "2024-08-22",
         },
       },
     ],
