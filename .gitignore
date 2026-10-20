@@ -2,3 +2,4 @@ node_modules/
 # package-lock.json
 .react-router
 .DS_Store
+.env

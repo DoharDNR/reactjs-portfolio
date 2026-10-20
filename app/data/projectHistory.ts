@@ -26,8 +26,8 @@ export type PortfolioRepository = {
 export type RepositoryYearActivity = {
   repositoryId: string;
   year: number;
-  commitCount: number; // commits authored by the portfolio owner within the selected year
-  firstCommitDate: string; // ISO date string (spec §11.2 prefers author date convention)
+  pushedDate: string; // latest repository push date
+  firstCommitDate: string; // repository creation date
   lastCommitDate: string;
 };
 
@@ -53,7 +53,7 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
         activity: {
           repositoryId: "repo-ai-chatbot",
           year: 2026,
-          commitCount: 18,
+          pushedDate: "2026-09-20",
           firstCommitDate: "2026-01-05",
           lastCommitDate: "2026-09-20",
         },
@@ -80,7 +80,7 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
         activity: {
           repositoryId: "repo-ecommerce-platform",
           year: 2025,
-          commitCount: 12,
+          pushedDate: "2025-04-28",
           firstCommitDate: "2025-03-15",
           lastCommitDate: "2025-04-28",
         },
@@ -102,7 +102,7 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
         activity: {
           repositoryId: "repo-task-management-app",
           year: 2025,
-          commitCount: 8,
+          pushedDate: "2025-04-20",
           firstCommitDate: "2025-01-10",
           lastCommitDate: "2025-04-20",
         },
@@ -124,7 +124,7 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
         activity: {
           repositoryId: "repo-blog-platform",
           year: 2025,
-          commitCount: 1,
+          pushedDate: "2025-05-02",
           firstCommitDate: "2025-05-02",
           lastCommitDate: "2025-05-02", // same date — spec §11.2: prefer displaying date once
         },
@@ -151,7 +151,7 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
         activity: {
           repositoryId: "repo-auth-service",
           year: 2024,
-          commitCount: 24,
+          pushedDate: "2024-11-30",
           firstCommitDate: "2024-02-14",
           lastCommitDate: "2024-11-30",
         },
@@ -173,7 +173,7 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
         activity: {
           repositoryId: "repo-finance-mobile-app",
           year: 2024,
-          commitCount: 5,
+          pushedDate: "2024-06-15",
           firstCommitDate: "2024-06-01",
           lastCommitDate: "2024-06-15",
         },
@@ -195,7 +195,7 @@ export const projectHistoryYears: ProjectHistoryYear[] = [
         activity: {
           repositoryId: "repo-weather-dashboard",
           year: 2024,
-          commitCount: 15,
+          pushedDate: "2024-08-22",
           firstCommitDate: "2024-03-10",
           lastCommitDate: "2024-08-22",
         },

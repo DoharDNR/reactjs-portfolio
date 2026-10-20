@@ -1,21 +1,46 @@
-// ===== GitHub Project History — Complete redesign per github-project-history-spec.md =====
+// ===== GitHub Project History — Refactored with Atomic Design =====
 import type { Route } from "./+types/projects";
-import { projectHistoryYears } from "~/data/projectHistory";
+import { projectHistoryYears as mockData } from "~/data/projectHistory";
 import { useState } from "react";
-import { GitCommit, Calendar, ExternalLink, Palette } from "lucide-react";
-import { ColorSchemeToggle } from "~/components/ui/color-scheme-toggle/color-scheme-toggle";
-import { Link } from "react-router";
-import { ArrowLeft } from "lucide-react";
 import { useColorScheme } from "@dazl/color-scheme/react";
+import { ProjectHistoryNavbar } from "~/components/organisms/ProjectHistoryNavbar";
+import { GitHubTimeline } from "~/components/organisms/GitHubTimeline";
+import { cache } from "~/services/cache.server";
+import type { ProjectHistoryYear } from "~/data/projectHistory";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Projects & Contributions - Dohar Siregar" },
     {
       name: "description",
-      content: "A year-by-year overview of repositories I've worked on, showing commit history and technologies.",
+      content: "A year-by-year overview of public repositories, showing project activity and technologies.",
     },
   ];
+}
+
+// ─── Server-side data loader ─────────────────────────────────────────────────
+
+export async function loader({ request }: Route.LoaderArgs) {
+  const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
+
+  // Fallback to mock data if the GitHub username is not configured
+  if (!GITHUB_USERNAME) {
+    console.warn("GitHub username not configured. Using mock data.");
+    return { projectHistory: mockData, source: "mock" as const };
+  }
+
+  // Return cached repository metadata (fetched once when the server starts)
+  const cacheKey = `github-history-${GITHUB_USERNAME}`;
+  const cachedData = cache.get<ProjectHistoryYear[]>(cacheKey);
+
+  if (cachedData) {
+    console.log("Returning cached GitHub data");
+    return { projectHistory: cachedData, source: "cache" as const };
+  }
+
+  // No cache yet (server still warming up) — return mock data
+  console.warn("GitHub cache not yet ready. Using mock data.");
+  return { projectHistory: mockData, source: "mock" as const };
 }
 
 // ─── Theme helper ────────────────────────────────────────────────────────────
@@ -92,285 +117,27 @@ function getTheme(useSpecTheme: boolean, isLight: boolean): ThemeColors {
   }
 }
 
-// ─── Icon helper (spec §9) ───────────────────────────────────────────────────
-
-function ProjectIcon({ type, isLight }: { type: string; isLight: boolean }) {
-  const icon = (
-    <svg
-      className="size-6 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M12 6v6l4 2" />
-    </svg>
-  );
-
-  const baseClass = "flex size-12 shrink-0 items-center justify-center rounded-xl";
-
-  // Adjust colors for light/dark
-  const lightDark = (light: string, dark: string) => (isLight ? light : dark);
-
-  switch (type) {
-    case "e-commerce":
-      return <span className={`${baseClass} ${lightDark("bg-indigo-100 text-indigo-700", "bg-indigo-500/15 text-indigo-300")}`}>{icon}</span>;
-    case "task-management":
-      return <span className={`${baseClass} ${lightDark("bg-emerald-100 text-emerald-700", "bg-emerald-500/15 text-emerald-300")}`}>{icon}</span>;
-    case "blog":
-      return <span className={`${baseClass} ${lightDark("bg-fuchsia-100 text-fuchsia-700", "bg-fuchsia-500/15 text-fuchsia-300")}`}>{icon}</span>;
-    case "auth":
-      return <span className={`${baseClass} ${lightDark("bg-sky-100 text-sky-700", "bg-sky-500/15 text-sky-300")}`}>{icon}</span>;
-    case "mobile":
-      return <span className={`${baseClass} ${lightDark("bg-amber-100 text-amber-700", "bg-amber-500/15 text-amber-300")}`}>{icon}</span>;
-    default:
-      return <span className={`${baseClass} ${lightDark("bg-slate-100 text-slate-700", "bg-slate-500/15 text-slate-300")}`}>{icon}</span>;
-  }
-}
-
 // ─── Main component ──────────────────────────────────────────────────────────
 
-export default function Projects() {
+export default function Projects({ loaderData }: Route.ComponentProps) {
   const [useSpecTheme, setUseSpecTheme] = useState(true);
   const { isLight } = useColorScheme();
   const theme = getTheme(useSpecTheme, isLight);
 
+  // Use loader data (GitHub or fallback)
+  const projectHistory = loaderData?.projectHistory || mockData;
+
   return (
     <>
-      {/* ===== Page-level navbar (theme toggles) ===== */}
-      <nav className={`sticky top-0 z-10 border-b ${theme.navbar.bg} ${theme.navbar.border}`}>
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-          <div className="flex items-center gap-3">
-            <Link
-              to="/"
-              className={`inline-flex items-center gap-1 text-xs font-medium transition ${
-                useSpecTheme
-                  ? "text-slate-500 hover:text-slate-300"
-                  : "text-neutral-9 hover:text-neutral-12"
-              }`}
-              aria-label="Back to home"
-            >
-              <ArrowLeft size={14} aria-hidden="true" />
-              Home
-            </Link>
-            <h2 className={`text-sm font-semibold ${theme.navbar.text}`}>
-              GitHub History
-            </h2>
-          </div>
+      <ProjectHistoryNavbar
+        useSpecTheme={useSpecTheme}
+        onThemeToggle={() => setUseSpecTheme((v) => !v)}
+        theme={theme}
+        isLight={isLight}
+      />
 
-          <div className="flex items-center gap-3">
-            {/* Theme palette toggle */}
-            <button
-              type="button"
-              onClick={() => setUseSpecTheme((v) => !v)}
-              className={`inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs font-medium transition ${
-                isLight
-                  ? "border-slate-300 bg-slate-100 text-slate-700 hover:bg-slate-200"
-                  : useSpecTheme
-                  ? "border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-slate-800"
-                  : "border-neutral-5 bg-neutral-2 text-neutral-11 hover:bg-neutral-3"
-              }`}
-              aria-label="Toggle theme palette"
-            >
-              <Palette size={14} aria-hidden="true" />
-              {useSpecTheme ? "Spec" : "Project"}
-            </button>
-
-            {/* System light/dark toggle */}
-            <ColorSchemeToggle />
-          </div>
-        </div>
-      </nav>
-
-      {/* ===== Main content (spec §4) ===== */}
       <main className={`mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 lg:py-16 ${theme.page.bg}`}>
-        {/* ===== Page introduction (spec §5) ===== */}
-        <div className="mb-12 max-w-3xl">
-          <p className={`mb-3 text-xs font-semibold uppercase tracking-[0.22em] ${theme.eyebrow}`}>
-            MY GITHUB JOURNEY
-          </p>
-          <h1 className={`text-3xl font-semibold tracking-tight sm:text-4xl ${theme.heading}`}>
-            Projects & <span className={theme.headingAccent}>Contributions</span>
-          </h1>
-          <p className={`mt-4 max-w-2xl text-sm leading-6 sm:text-base ${theme.body}`}>
-            A year-by-year overview of repositories I've worked on, showing the first and last
-            commit dates within each year.
-          </p>
-        </div>
-
-        {/* ===== Timeline (spec §6) ===== */}
-        <div className="space-y-12">
-          {projectHistoryYears.map((yearGroup, yearIndex) => {
-            const repoCount = yearGroup.repositories.length;
-            const isNewestYear = yearIndex === 0;
-            const isLastYear = yearIndex === projectHistoryYears.length - 1;
-
-            return (
-              <section key={yearGroup.year} className="relative">
-                {/* Two-column grid: year marker | cards */}
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-[130px_minmax(0,1fr)] md:gap-8">
-                  {/* ===== Year marker column (spec §7) ===== */}
-                  <div className="relative h-full">
-                    {/* Desktop: dot + connector */}
-                    <div className="relative hidden h-full md:block">
-                      {/* Timeline dot */}
-                      <div className="relative flex items-center">
-                        <span
-                          className={`flex size-3 shrink-0 rounded-full ring-4 ${
-                            isNewestYear
-                              ? `${theme.timeline.dot} ${theme.timeline.dotRing}`
-                              : `${isLight ? "bg-slate-400" : "bg-slate-500"} ring-slate-500/15`
-                          }`}
-                        />
-                        {/* Year heading beside dot */}
-                        <div className="ml-5">
-                          <h2 className={`text-2xl font-semibold tracking-tight ${theme.heading}`}>
-                            {yearGroup.year}
-                          </h2>
-                          <p className={`mt-1 text-sm ${theme.body}`}>
-                            {repoCount === 1 ? "1 repository" : `${repoCount} repositories`}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Connector line (matches section height + gap to next section) */}
-                      <div
-                        className={`absolute left-[5px] top-7 bottom-0 w-px ${theme.timeline.line}`}
-                        style={{ height: 'calc(100% + 1rem)' }}
-                      />
-                    </div>
-
-                    {/* Mobile: year heading only */}
-                    <div className="md:hidden">
-                      <h2 className={`text-2xl font-semibold tracking-tight ${theme.heading}`}>
-                        {yearGroup.year}
-                      </h2>
-                      <p className={`mt-1 text-sm ${theme.body}`}>
-                        {repoCount === 1 ? "1 repository" : `${repoCount} repositories`}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* ===== Repository cards column ===== */}
-                  <div className="space-y-4">
-                    {yearGroup.repositories
-                      .sort(
-                        (a, b) =>
-                          (a.repository.displayOrder ?? 99) - (b.repository.displayOrder ?? 99)
-                      )
-                      .map((entry) => (
-                        <article
-                          key={entry.repository.id}
-                          className={`rounded-2xl border p-5 transition sm:p-6 ${theme.card.bg} ${theme.card.border} ${theme.card.borderHover}`}
-                        >
-                          {/* Card internal layout (spec §10) */}
-                          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                            {/* ===== Left region: icon + info ===== */}
-                            <div className="flex min-w-0 gap-4">
-                              <ProjectIcon type={entry.repository.iconType} isLight={isLight} />
-
-                              <div className="flex flex-col">
-                                {/* Title + featured badge (spec §10.1, §10.2) */}
-                                <div className="flex items-center gap-2">
-                                  <h3 className={`text-base font-semibold ${theme.heading}`}>
-                                    {entry.repository.title}
-                                  </h3>
-                                  {entry.repository.featured && (
-                                    <span
-                                      className={`rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${theme.badge.bg} ${theme.badge.border} ${theme.badge.text}`}
-                                      aria-label="Featured project"
-                                    >
-                                      Featured
-                                    </span>
-                                  )}
-                                </div>
-
-                                {/* Description (spec §10.3) */}
-                                <p className={`mt-1 max-w-2xl text-sm leading-6 ${theme.body}`}>
-                                  {entry.repository.description}
-                                </p>
-
-                                {/* Technology badges (spec §10.4) */}
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                  {entry.repository.technologies.map((tech) => (
-                                    <span
-                                      key={tech}
-                                      className={`rounded-full px-2.5 py-1 text-xs ${theme.tech.bg} ${theme.tech.text}`}
-                                    >
-                                      {tech}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* ===== Right region: metadata (spec §11) ===== */}
-                            <div
-                              className={`flex shrink-0 flex-col gap-3 border-t pt-4 text-sm lg:min-w-56 lg:border-0 lg:pt-1 ${theme.meta.border} ${theme.meta.text}`}
-                            >
-                              {/* Commit count (spec §11.1) */}
-                              <div className="flex items-center gap-2">
-                                <GitCommit size={14} aria-hidden="true" />
-                                <span>
-                                  {entry.activity.commitCount === 1
-                                    ? `1 commit in ${entry.activity.year}`
-                                    : `${entry.activity.commitCount} commits in ${entry.activity.year}`}
-                                </span>
-                              </div>
-
-                              {/* Date range (spec §11.2) */}
-                              <div className="flex items-center gap-2">
-                                <Calendar size={14} aria-hidden="true" />
-                                <span>
-                                  {new Date(entry.activity.firstCommitDate).toLocaleDateString(
-                                    "en-US",
-                                    { month: "short", day: "numeric", year: "numeric" }
-                                  )}
-                                  {entry.activity.firstCommitDate !==
-                                    entry.activity.lastCommitDate && (
-                                    <>
-                                      {" → "}
-                                      <span className={theme.meta.mutedText}>
-                                        {new Date(entry.activity.lastCommitDate).toLocaleDateString(
-                                          "en-US",
-                                          { month: "short", day: "numeric", year: "numeric" }
-                                        )}
-                                      </span>
-                                    </>
-                                  )}
-                                </span>
-                              </div>
-
-                              {/* Repository link (spec §11.3) */}
-                              <a
-                                href={entry.repository.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`inline-flex w-fit items-center gap-1 text-xs font-medium transition ${theme.link.text} ${theme.link.textHover}`}
-                              >
-                                View repository <ExternalLink size={12} aria-hidden="true" />
-                              </a>
-                            </div>
-                          </div>
-                        </article>
-                      ))}
-                  </div>
-                </div>
-              </section>
-            );
-          })}
-        </div>
-
-        {/* ===== Footer (spec §15) ===== */}
-        <footer className={`mt-16 border-t pt-6 ${theme.footer.border}`}>
-          <p className={`text-xs ${theme.footer.text}`}>
-            Sample content only. Replace project details, commit dates, counts, technologies, and
-            links with verified GitHub data.
-          </p>
-        </footer>
+        <GitHubTimeline yearGroups={projectHistory} theme={theme} isLight={isLight} />
       </main>
     </>
   );
