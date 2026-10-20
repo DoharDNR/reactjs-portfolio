@@ -1,7 +1,7 @@
 // ===== GitHub Project History — Refactored with Atomic Design =====
 import type { Route } from "./+types/projects";
-import { projectHistoryYears as mockData } from "~/data/projectHistory";
-import { useState } from "react";
+import { useRevalidator } from "react-router";
+import { useEffect, useState } from "react";
 import { useColorScheme } from "@dazl/color-scheme/react";
 import { ProjectHistoryNavbar } from "~/components/organisms/ProjectHistoryNavbar";
 import { GitHubTimeline } from "~/components/organisms/GitHubTimeline";
@@ -20,13 +20,11 @@ export function meta({}: Route.MetaArgs) {
 
 // ─── Server-side data loader ─────────────────────────────────────────────────
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function loader({}: Route.LoaderArgs) {
   const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
 
-  // Fallback to mock data if the GitHub username is not configured
   if (!GITHUB_USERNAME) {
-    console.warn("GitHub username not configured. Using mock data.");
-    return { projectHistory: mockData, source: "mock" as const };
+    return { projectHistory: [], source: "loading" as const };
   }
 
   // Return cached repository metadata (fetched once when the server starts)
@@ -38,9 +36,7 @@ export async function loader({ request }: Route.LoaderArgs) {
     return { projectHistory: cachedData, source: "cache" as const };
   }
 
-  // No cache yet (server still warming up) — return mock data
-  console.warn("GitHub cache not yet ready. Using mock data.");
-  return { projectHistory: mockData, source: "mock" as const };
+  return { projectHistory: [], source: "loading" as const };
 }
 
 // ─── Theme helper ────────────────────────────────────────────────────────────
@@ -123,9 +119,35 @@ export default function Projects({ loaderData }: Route.ComponentProps) {
   const [useSpecTheme, setUseSpecTheme] = useState(true);
   const { isLight } = useColorScheme();
   const theme = getTheme(useSpecTheme, isLight);
+  const revalidator = useRevalidator();
+  const isLoading = loaderData?.source === "loading";
 
-  // Use loader data (GitHub or fallback)
-  const projectHistory = loaderData?.projectHistory || mockData;
+  useEffect(() => {
+    if (!isLoading) return;
+    const interval = window.setInterval(() => revalidator.revalidate(), 2000);
+    return () => window.clearInterval(interval);
+  }, [isLoading, revalidator]);
+
+  const projectHistory = loaderData?.projectHistory ?? [];
+
+  if (isLoading) {
+    return (
+      <main className={`mx-auto min-h-screen w-full max-w-6xl px-5 py-12 sm:px-8 lg:py-16 ${theme.page.bg}`}>
+        <div className="animate-pulse space-y-8">
+          <div className="space-y-4">
+            <div className="h-3 w-32 rounded bg-neutral-6" />
+            <div className="h-10 w-80 rounded bg-neutral-6" />
+            <div className="h-5 w-full max-w-2xl rounded bg-neutral-4" />
+          </div>
+          <div className="space-y-4">
+            {[1, 2, 3].map((item) => (
+              <div key={item} className="h-32 rounded-lg bg-neutral-3" />
+            ))}
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>

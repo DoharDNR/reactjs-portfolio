@@ -38,8 +38,7 @@ export function GitHubTimeline({ yearGroups, theme, isLight }: GitHubTimelinePro
           Projects & <span className={theme.headingAccent}>Contributions</span>
         </h1>
         <p className={`mt-4 max-w-2xl text-sm leading-6 sm:text-base ${theme.body}`}>
-          A year-by-year overview of repositories I've worked on, showing the first and last
-          commit dates within each year.
+          A year-by-year overview of public repositories, showing creation dates and latest pushes.
         </p>
       </div>
 
@@ -118,8 +117,7 @@ export function GitHubTimeline({ yearGroups, theme, isLight }: GitHubTimelinePro
       {/* ===== Footer ===== */}
       <footer className={`mt-16 border-t pt-6 ${theme.footer.border}`}>
         <p className={`text-xs ${theme.footer.text}`}>
-          Sample content only. Replace project details, commit dates, counts, technologies, and
-          links with verified GitHub data.
+          Repository metadata is loaded from GitHub.
         </p>
       </footer>
     </>

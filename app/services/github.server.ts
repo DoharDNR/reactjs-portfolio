@@ -88,7 +88,9 @@ export async function fetchGitHubProjectHistory(
   const historyYears: ProjectHistoryYear[] = [];
 
   for (const [year, reposInYear] of yearMap.entries()) {
-    const repositories = reposInYear.map((repo, index) => {
+    const repositories = [...reposInYear]
+      .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
+      .map((repo, index) => {
       const firstCommitDate = repo.created_at.split("T")[0];
       const lastCommitDate = (repo.pushed_at || repo.updated_at).split("T")[0];
 
