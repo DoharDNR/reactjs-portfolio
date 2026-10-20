@@ -1,4 +1,8 @@
-/* Josh Comeau CSS Reset 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Josh Comeau CSS Reset
  * Source: https://www.joshwcomeau.com/css/custom-css-reset/
  * Description: A modern CSS reset to improve consistency and control over default styles.
  */

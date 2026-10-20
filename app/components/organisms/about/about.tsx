@@ -21,7 +21,7 @@ export default function AboutSection() {
   const selectedEntry = historyEntries.find((entry) => entry.id === selectedId) ?? historyEntries[0];
 
   return (
-    <main className="min-h-screen">
+    <main id="about" className="min-h-screen">
       <Navbar />
 
       {/* ===== Profile Hero ===== */}

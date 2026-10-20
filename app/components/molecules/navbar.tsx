@@ -1,40 +1,77 @@
-// ===== Top Navigation: dark bar with brand, centered links, theme toggle =====
-// Uses Tailwind utility classes. Colors via CSS design tokens for dark/light mode.
-// Responsive: nav links collapse into hamburger menu below 768px.
-
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import { Link, useLocation } from "react-router";
+import { motion, AnimatePresence } from "framer-motion";
 import { ColorSchemeToggle } from "~/components/ui/color-scheme-toggle/color-scheme-toggle";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav className="sticky top-0 z-10 bg-neutral-1 border-b border-neutral-7">
       <div className="max-w-360 mx-auto px-6 md:px-12.5 h-16 flex items-center justify-between">
         {/* Brand (left) */}
-        <a href="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <span className="w-[22px] h-[22px] text-accent-9 flex items-center justify-center">◆</span>
           <span className="font-heading text-neutral-12 text-[20px] font-bold">Dohar.</span>
-        </a>
+        </Link>
 
         {/* Nav links (center) — hidden on mobile, visible on md+ */}
         <div className="hidden md:flex items-center gap-[36px]">
-          <a href="#" className="text-[14px] text-neutral-9 transition-colors 200ms ease relative focus-visible:text-accent-9 focus-visible:outline-none">
-            Home
-          </a>
           <a
-            href="#about"
-            className="text-[14px] text-accent-9 transition-colors 200ms ease relative focus-visible:outline-none"
+            href="/#about"
+            onMouseEnter={() => setHoveredPath("/about")}
+            onMouseLeave={() => setHoveredPath(null)}
+            className={`text-[14px] transition-colors 200ms ease relative focus-visible:outline-none ${
+              (location.pathname === "/" && (typeof window === "undefined" || window.location.hash !== "#contact") || hoveredPath === "/about") ? "text-accent-9" : "text-neutral-9 hover:text-accent-9"
+            }`}
           >
             About
-            <span className="absolute bottom-[-8px] left-0 w-[38px] h-0.5 bg-accent-9" />
+            {(location.pathname === "/" && (typeof window === "undefined" || window.location.hash !== "#contact") || hoveredPath === "/about") && (
+              <motion.span
+                layoutId="nav-underline"
+                className="absolute -bottom-2 left-0 right-0 h-0.5 bg-accent-9"
+              />
+            )}
           </a>
-          <a href="/projects" className="text-[14px] text-neutral-9 transition-colors 200ms ease relative focus-visible:text-accent-9 focus-visible:outline-none">
+          <Link
+            to="/projects"
+            onMouseEnter={() => setHoveredPath("/projects")}
+            onMouseLeave={() => setHoveredPath(null)}
+            className={`text-[14px] transition-colors 200ms ease relative focus-visible:outline-none ${
+              (isActive("/projects") || hoveredPath === "/projects") ? "text-accent-9" : "text-neutral-9 hover:text-accent-9"
+            }`}
+          >
             Projects
-          </a>
-          <a href="#contact" className="text-[14px] text-neutral-9 transition-colors 200ms ease relative focus-visible:text-accent-9 focus-visible:outline-none">
+            {(isActive("/projects") || hoveredPath === "/projects") && (
+              <motion.span
+                layoutId="nav-underline"
+                className="absolute -bottom-2 left-0 right-0 h-0.5 bg-accent-9"
+              />
+            )}
+          </Link>
+          <a
+            href="/#contact"
+            onMouseEnter={() => setHoveredPath("/contact")}
+            onMouseLeave={() => setHoveredPath(null)}
+            className={`text-[14px] transition-colors 200ms ease relative focus-visible:outline-none ${
+              (typeof window !== "undefined" && window.location.hash === "#contact") || hoveredPath === "/contact"
+                ? "text-accent-9"
+                : "text-neutral-9 hover:text-accent-9"
+            }`}
+          >
             Contact
+            {((typeof window !== "undefined" && window.location.hash === "#contact") ||
+              hoveredPath === "/contact") && (
+              <motion.span
+                layoutId="nav-underline"
+                className="absolute -bottom-2 left-0 right-0 h-0.5 bg-accent-9"
+              />
+            )}
           </a>
         </div>
 
@@ -56,38 +93,41 @@ export function Navbar() {
       </div>
 
       {/* Mobile menu drawer */}
-      <div
-        className={`md:hidden transition-all duration-200 ease overflow-hidden border-t border-neutral-7 ${
-          isMobileMenuOpen ? "max-h-[300px] py-4" : "max-h-0"
-        }`}
-      >
-        <div className="max-w-360 mx-auto px-6 md:px-12.5 flex flex-col gap-3">
-          <a href="#" className="text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2">
-            Home
-          </a>
-          <a
-            href="#about"
-            className="text-[14px] text-accent-9 transition-colors 200ms ease py-2"
-            onClick={() => setIsMobileMenuOpen(false)}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden border-t border-neutral-7"
           >
-            About
-          </a>
-          <a
-            href="/projects"
-            className="text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Projects
-          </a>
-          <a
-            href="#contact"
-            className="text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Contact
-          </a>
-        </div>
-      </div>
+            <div className="max-w-360 mx-auto px-6 md:px-12.5 py-4 flex flex-col gap-3">
+              <a
+                href="/#about"
+                className="text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <Link
+                to="/projects"
+                className="text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Projects
+              </Link>
+              <a
+                href="/#contact"
+                className="text-[14px] text-neutral-11 hover:text-neutral-1 transition-colors 200ms ease py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
