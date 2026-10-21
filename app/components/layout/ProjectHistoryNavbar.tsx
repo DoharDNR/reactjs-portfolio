@@ -1,4 +1,3 @@
-// ===== Organism: ProjectHistoryNavbar =====
 // Page-level navigation bar with back link and theme toggles
 
 import { Link } from "react-router";

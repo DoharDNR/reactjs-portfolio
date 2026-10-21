@@ -3,8 +3,8 @@ import type { Route } from "./+types/projects";
 import { useRevalidator } from "react-router";
 import { useEffect, useState } from "react";
 import { useColorScheme } from "@dazl/color-scheme/react";
-import { ProjectHistoryNavbar } from "~/components/organisms/ProjectHistoryNavbar";
-import { GitHubTimeline } from "~/components/organisms/GitHubTimeline";
+import { ProjectHistoryNavbar } from "~/components/layout/ProjectHistoryNavbar";
+import { GitHubTimeline } from "~/components/github/GitHubTimeline";
 import { cache } from "~/services/cache.server";
 import type { ProjectHistoryYear } from "~/data/projectHistory";
 

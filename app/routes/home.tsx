@@ -2,8 +2,8 @@
 // Uses Tailwind utility classes. Colors via CSS design tokens for dark/light mode.
 
 import type { Route } from "./+types/home";
-import AboutSection from "~/components/organisms/about/about";
-import { ContactSection } from "~/components/organisms/contact/contact";
+import AboutSection from "~/components/portfolio/AboutSection";
+import { ContactSection } from "~/components/portfolio/ContactSection";
 
 export function meta({}: Route.MetaArgs) {
   return [

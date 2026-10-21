@@ -1,10 +1,10 @@
-// ===== Molecule: RepositoryCard =====
+// ===== RepositoryCard =====
 // A card displaying repository information with metadata
 
 import { Calendar, ExternalLink } from "lucide-react";
 import { ProjectIcon } from "./ProjectIcon";
-import { TechBadge } from "~/components/atoms/TechBadge";
-import { FeaturedBadge } from "~/components/atoms/FeaturedBadge";
+import { TechBadge } from "./TechBadge";
+import { FeaturedBadge } from "./FeaturedBadge";
 import type { PortfolioRepository, RepositoryYearActivity } from "~/data/projectHistory";
 
 type ThemeColors = {

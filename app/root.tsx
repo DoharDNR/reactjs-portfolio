@@ -2,7 +2,7 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration }
 
 import type { Route } from "./+types/root";
 import { Toaster } from "./components/ui/toaster/toaster";
-import { Footer } from "./components/ui/footer/footer";
+import { Footer } from "./components/layout/Footer";
 import colorSchemeApi from "@dazl/color-scheme/client?url";
 
 import "./styles/tailwind.css";

@@ -1,50 +1,48 @@
-# Atomic Design Refactoring Summary
+# Reusable Component Structure
 
-## Completed: October 19, 2026
-
-This document summarizes the refactoring of `projects.tsx` into Atomic Design components.
+The project groups components by feature and purpose rather than by Atomic Design levels. This keeps related components together and makes reuse easier to discover.
 
 ## Structure
 
-### **Atoms** (`app/components/atoms/`)
-Simple, reusable building blocks:
+### `app/components/github/`
+Reusable GitHub project history components:
 
-1. **TimelineDot.tsx** - Circular timeline marker with configurable accent/muted states
-2. **TechBadge.tsx** - Pill-shaped technology label
-3. **FeaturedBadge.tsx** - Small badge indicating featured projects
+- `GitHubTimeline.tsx` — year-based repository timeline
+- `RepositoryCard.tsx` — repository details and activity metadata
+- `ProjectIcon.tsx` — project type icon tile
+- `YearMarker.tsx` — year and repository count
+- `TimelineDot.tsx` — timeline marker
+- `TechBadge.tsx` — technology label
+- `FeaturedBadge.tsx` — featured project label
 
-### **Molecules** (`app/components/molecules/`)
-Combinations of atoms serving specific purposes:
+### `app/components/portfolio/`
+Reusable portfolio content components:
 
-1. **ProjectIcon.tsx** - Color-coded icon tile (e-commerce, task-management, blog, auth, mobile)
-2. **YearMarker.tsx** - Year heading with repository count
-3. **RepositoryCard.tsx** - Complete repository card with icon, title, description, badges, and metadata
+- `AboutSection.tsx` — introduction, profile facts, and history
+- `ContactSection.tsx` — contact links
+- `Navbar.tsx` — portfolio navigation
+- `TimelineItem.tsx` — work and education history item
+- `DetailCard.tsx` — selected history details
+- `InfoItem.tsx` — profile fact row
 
-### **Organisms** (`app/components/organisms/`)
-Complex, self-contained sections:
+### `app/components/layout/`
+Page-level layout components:
 
-1. **ProjectHistoryNavbar.tsx** - Page navigation with back link and theme toggles
-2. **GitHubTimeline.tsx** - Full year-based timeline with intro, year groups, and footer
+- `ProjectHistoryNavbar.tsx` — project history navigation and theme palette control
+- `Footer.tsx` — global footer
 
-### **Page** (`app/routes/projects.tsx`)
-Main route orchestrating organisms - reduced from **400+ lines to ~120 lines**
+### `app/components/ui/`
+Generic reusable UI primitives and controls:
 
-## Benefits
+- Buttons, cards, skeletons, dropdown menus, sliders
+- Color scheme toggle
+- Toast and toaster components
+- `NavLink.tsx` — reusable navigation link
 
-- ✅ **Reusability** - Components can be used in other parts of the app
-- ✅ **Maintainability** - Each component has a single responsibility
-- ✅ **Testability** - Isolated components are easier to test
-- ✅ **Readability** - Clear hierarchy and structure
-- ✅ **GitHub Integration Ready** - Clean separation makes API integration straightforward
+## Principles
 
-## Next Steps
-
-Ready for **GitHub API Integration** (Option 1: Server-Side Proxy with React Router loaders).
-
-## File Count
-- **3 Atoms**
-- **3 Molecules**  
-- **2 Organisms**
-- **1 Refactored Route**
-
-Total: **9 new/updated files**
+- Group by domain or purpose, not component size.
+- Keep components focused and reusable through typed props.
+- Keep generic controls in `ui/`.
+- Keep feature-specific components close to the feature they support.
+- Prefer direct imports over deep Atomic Design hierarchy.

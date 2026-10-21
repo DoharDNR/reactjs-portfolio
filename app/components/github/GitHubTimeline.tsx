@@ -1,9 +1,9 @@
-// ===== Organism: GitHubTimeline =====
+// ===== GitHubTimeline =====
 // Year-based timeline displaying repository history
 
-import { TimelineDot } from "~/components/atoms/TimelineDot";
-import { YearMarker } from "~/components/molecules/YearMarker";
-import { RepositoryCard } from "~/components/molecules/RepositoryCard";
+import { TimelineDot } from "./TimelineDot";
+import { YearMarker } from "./YearMarker";
+import { RepositoryCard } from "./RepositoryCard";
 import type { ProjectHistoryYear } from "~/data/projectHistory";
 
 type ThemeColors = {
@@ -47,8 +47,6 @@ export function GitHubTimeline({ yearGroups, theme, isLight }: GitHubTimelinePro
         {yearGroups.map((yearGroup, yearIndex) => {
           const repoCount = yearGroup.repositories.length;
           const isNewestYear = yearIndex === 0;
-          const isLastYear = yearIndex === yearGroups.length - 1;
-
           return (
             <section key={yearGroup.year} className="relative">
               {/* Two-column grid: year marker | cards */}
