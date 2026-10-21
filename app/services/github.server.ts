@@ -1,5 +1,6 @@
 // GitHub API service — automatic public-repository discovery.
 import type { PortfolioRepository, RepositoryYearActivity, ProjectHistoryYear } from "~/data/projectHistory";
+import { fetchVercelDeploymentUrls } from "~/services/vercel.server";
 
 // GitHub API types
 type GitHubRepo = {
@@ -77,6 +78,7 @@ export async function fetchGitHubProjectHistory(
   token: string
 ): Promise<ProjectHistoryYear[]> {
   const repos = (await fetchUserRepositories(username, token)).filter((repo) => !repo.archived && !repo.private);
+  const deploymentUrls = await fetchVercelDeploymentUrls();
   const yearMap = new Map<number, GitHubRepo[]>();
 
   for (const repo of repos) {
@@ -101,6 +103,8 @@ export async function fetchGitHubProjectHistory(
         owner: username,
         name: repo.name,
         url: repo.html_url,
+        deploymentUrl:
+          deploymentUrls.get(`${username}/${repo.name}`.toLowerCase()) ?? deploymentUrls.get(repo.name.toLowerCase()),
         title: repo.name
           .split("-")
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

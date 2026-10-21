@@ -1,6 +1,6 @@
 # Developer Portfolio
 
-A modern, full-stack developer portfolio built with **React Router v7**, **TypeScript**, and **Vite**. Features automatic GitHub repository discovery, an Atomic Design component architecture, and a sophisticated theming system.
+A modern, full-stack developer portfolio built with **React Router v7**, **TypeScript**, and **Vite**. Features automatic GitHub repository discovery, a reusable category-based component architecture, and a sophisticated theming system.
 
 ## 🚀 Features
 
@@ -55,10 +55,10 @@ A modern, full-stack developer portfolio built with **React Router v7**, **TypeS
 ```
 app/
 ├── components/
-│   ├── atoms/           # TimelineDot, TechBadge, FeaturedBadge, NavLink
-│   ├── molecules/       # ProjectIcon, YearMarker, RepositoryCard, InfoItem, TimelineItem, DetailCard, Navbar
-│   ├── organisms/       # GitHubTimeline, ProjectHistoryNavbar, about/, contact/
-│   └── ui/              # Button, Card, Skeleton, ColorSchemeToggle, DropdownMenu, Toast, Slider, Footer
+│   ├── github/          # GitHub timeline and repository components
+│   ├── portfolio/       # About, contact, profile, and history components
+│   ├── layout/          # Shared page navigation and footer
+│   └── ui/              # Generic reusable controls and primitives
 ├── routes/
 │   ├── home.tsx         # About + Contact
 │   └── projects.tsx     # GitHub timeline
@@ -83,13 +83,17 @@ app/
 
 ## 🎨 Design System
 
-### Atomic Design Architecture
-| Level | Components |
-|-------|------------|
-| **Atoms** | `TimelineDot`, `TechBadge`, `FeaturedBadge`, `NavLink` |
-| **Molecules** | `ProjectIcon`, `YearMarker`, `RepositoryCard`, `InfoItem`, `TimelineItem`, `DetailCard`, `Navbar` |
-| **Organisms** | `GitHubTimeline`, `ProjectHistoryNavbar`, `AboutSection`, `ContactSection` |
-| **UI Primitives** | `Button`, `Card`, `Skeleton`, `ColorSchemeToggle`, `DropdownMenu`, `Toast/Toaster`, `Slider`, `Footer` |
+### Reusable Component Architecture
+Components are grouped by domain and purpose instead of abstract size levels:
+
+| Category | Responsibility | Examples |
+|----------|----------------|----------|
+| **GitHub** | Repository history and timeline UI | `GitHubTimeline`, `RepositoryCard`, `ProjectIcon`, `TechBadge` |
+| **Portfolio** | Personal profile and experience content | `AboutSection`, `ContactSection`, `TimelineItem`, `DetailCard`, `InfoItem` |
+| **Layout** | Shared page-level structure | `ProjectHistoryNavbar`, `Footer` |
+| **UI** | Generic controls and reusable primitives | `Button`, `Card`, `Skeleton`, `ColorSchemeToggle`, `DropdownMenu`, `NavLink` |
+
+This structure keeps related components close together, shortens import paths, and makes reusable components easier to discover.
 
 ### Design Tokens (CSS Variables)
 - **Typography**: Fluid sizing (`--font-size-fluid-*`), Inter font, semantic scales (`--font-heading`, `--font-body`, `--font-caption`, `--font-code`)
@@ -104,7 +108,7 @@ app/
 - **Easing**: Standard curves (`--ease`, `--ease-in`, `--ease-out`, `--ease-bounce-*`)
 - **Animations**: Keyframes for fade, scale, spin, blink, bounce
 
-### Dual Theming Strategy (in `projects.tsx`)
+### Dual Theming Strategy (in `app/routes/projects.tsx`)
 1. **Spec Theme** – Tailwind utility classes with slate/indigo palette
 2. **Project Theme** – CSS design tokens (`var(--color-neutral-*)`, `var(--color-accent-*)`)
 

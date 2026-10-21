@@ -11,6 +11,7 @@ export type PortfolioRepository = {
   owner: string;
   name: string;
   url: string;
+  deploymentUrl?: string;
   title: string;
   description: string;
   technologies: string[];

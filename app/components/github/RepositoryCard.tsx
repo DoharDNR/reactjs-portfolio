@@ -25,6 +25,8 @@ type RepositoryCardProps = {
 };
 
 export function RepositoryCard({ repository, activity, theme, isLight }: RepositoryCardProps) {
+  // console.log(`[RepositoryCard] ${repository.name} deploymentUrl:`, repository.deploymentUrl);
+
   return (
     <article
       className={`rounded-2xl border p-5 transition sm:p-6 ${theme.card.bg} ${theme.card.border} ${theme.card.borderHover}`}
@@ -110,14 +112,26 @@ export function RepositoryCard({ repository, activity, theme, isLight }: Reposit
           </div>
 
           {/* Repository link */}
-          <a
-            href={repository.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex w-fit items-center gap-1 text-xs font-medium transition ${theme.link.text} ${theme.link.textHover}`}
-          >
-            View repository <ExternalLink size={12} aria-hidden="true" />
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={repository.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex w-fit items-center gap-1 text-xs font-medium transition ${theme.link.text} ${theme.link.textHover}`}
+            >
+              View repository <ExternalLink size={12} aria-hidden="true" />
+            </a>
+            {repository.deploymentUrl && (
+              <a
+                href={repository.deploymentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex w-fit items-center gap-1 text-xs font-medium transition ${theme.link.text} ${theme.link.textHover}`}
+              >
+                View live site <ExternalLink size={12} aria-hidden="true" />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </article>
